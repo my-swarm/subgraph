@@ -1,0 +1,56 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: kovan
+    source:
+      address: "0x6381EED41817bcaB733F845d3A6EdE64A721dbA1"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - FactoryAdded
+        - FactoryRemoved
+        - MinterAdded
+        - MinterRemoved
+        - OwnershipTransferred
+        - SRC20Registered
+        - SRC20Removed
+        - SRC20StakeDecreased
+        - SRC20StakeIncreased
+        - SRC20SupplyDecreased
+        - SRC20SupplyIncreased
+        - SRC20SupplyMinted
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: FactoryAdded(address)
+          handler: handleFactoryAdded
+        - event: FactoryRemoved(address)
+          handler: handleFactoryRemoved
+        - event: MinterAdded(address)
+          handler: handleMinterAdded
+        - event: MinterRemoved(address)
+          handler: handleMinterRemoved
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: SRC20Registered(address,address)
+          handler: handleSRC20Registered
+        - event: SRC20Removed(address)
+          handler: handleSRC20Removed
+        - event: SRC20StakeDecreased(address,address,uint256)
+          handler: handleSRC20StakeDecreased
+        - event: SRC20StakeIncreased(address,address,uint256)
+          handler: handleSRC20StakeIncreased
+        - event: SRC20SupplyDecreased(address,address,uint256)
+          handler: handleSRC20SupplyDecreased
+        - event: SRC20SupplyIncreased(address,address,uint256)
+          handler: handleSRC20SupplyIncreased
+        - event: SRC20SupplyMinted(address,address,uint256,uint256)
+          handler: handleSRC20SupplyMinted
+      file: ./src/mapping.ts
