@@ -4,10 +4,12 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ my-swarm/issuance",
+    "deploy": "deploy.sh",
     "create-local": "graph create --node http://localhost:8020/ my-swarm/issuance",
     "remove-local": "graph remove --node http://localhost:8020/ my-swarm/issuance",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 my-swarm/issuance"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 my-swarm/issuance",
+    "dev:compile": "npm run codegen && npm run build",
+    "dev:deploy": "npm run create-local; npm run deploy-local"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",

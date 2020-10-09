@@ -1,56 +1,147 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
+description: Swarm Contract Issuance
+repository: https://github.com/my-swarm/subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Contract
-    network: kovan
+    name: Registry
+    network: mainnet
     source:
-      address: "0x6381EED41817bcaB733F845d3A6EdE64A721dbA1"
-      abi: Contract
+      address: "0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7"
+      abi: SRC20Registry
+#      startBlock: 20670075
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
-      entities:
-        - FactoryAdded
-        - FactoryRemoved
-        - MinterAdded
-        - MinterRemoved
-        - OwnershipTransferred
-        - SRC20Registered
-        - SRC20Removed
-        - SRC20StakeDecreased
-        - SRC20StakeIncreased
-        - SRC20SupplyDecreased
-        - SRC20SupplyIncreased
-        - SRC20SupplyMinted
+      file: ./src/mappings/registry.ts
       abis:
-        - name: Contract
-          file: ./abis/Contract.json
+        - name: SRC20Registry
+          file: ./abis/SRC20Registry.json
+      entities:
+        - Registry
       eventHandlers:
-        - event: FactoryAdded(address)
-          handler: handleFactoryAdded
-        - event: FactoryRemoved(address)
-          handler: handleFactoryRemoved
-        - event: MinterAdded(address)
-          handler: handleMinterAdded
-        - event: MinterRemoved(address)
-          handler: handleMinterRemoved
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: SRC20Registered(address,address)
-          handler: handleSRC20Registered
         - event: SRC20Removed(address)
           handler: handleSRC20Removed
-        - event: SRC20StakeDecreased(address,address,uint256)
-          handler: handleSRC20StakeDecreased
-        - event: SRC20StakeIncreased(address,address,uint256)
-          handler: handleSRC20StakeIncreased
-        - event: SRC20SupplyDecreased(address,address,uint256)
-          handler: handleSRC20SupplyDecreased
-        - event: SRC20SupplyIncreased(address,address,uint256)
-          handler: handleSRC20SupplyIncreased
-        - event: SRC20SupplyMinted(address,address,uint256,uint256)
-          handler: handleSRC20SupplyMinted
-      file: ./src/mapping.ts
+        - event: SRC20SupplyIncreased(address,address,uint256,uint256)
+          handler: handleSupplyIncreased
+        - event: SRC20SupplyDecreased(address,address,uint256,uint256)
+          handler: handleSupplyDecreased
+# Events skipped for now:
+# - FactoryAdded (we only use one)
+# - FactoryRemoved
+# - SRC20Registered (the logic handled by SRC20Factory.SRC20Created)
+# - MinterAdded (we only use one)
+# - MinterRemoved
+
+  - kind: ethereum/contract
+    name: Factory
+    network: mainnet
+    source:
+      address: "0xf4e77E5Da47AC3125140c470c71cBca77B5c638c"
+      abi: SRC20Factory
+#      startBlock: 20670075
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/factory.ts
+      abis:
+        - name: SRC20Factory
+          file: ./abis/SRC20Factory.json
+      entities:
+        - Factory
+      eventHandlers:
+        - event: SRC20Created(address,address,address,string,string,uint8,uint256,bytes32,string)
+          handler: handleSRC20Created
+
+templates:
+  - name: Token
+    network: mainnet
+    kind: ethereum/contract
+    source:
+      abi: SRC20
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: './src/mappings/token.ts'
+      abis:
+        - name: SRC20
+          file: ./abis/SRC20.json
+      entities:
+        - Token
+        - TokenHolder
+        - Transfer
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+
+  - name: TransferRules
+    network: mainnet
+    kind: ethereum/contract
+    source:
+      abi: TransferRules
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: './src/mappings/transferRules.ts'
+      abis:
+        - name: TransferRules
+          file: ./abis/TransferRules.json
+      entities:
+        - Token
+        - TransferRequest
+      eventHandlers:
+        - event: AccountWhitelisted(address,address)
+          handler: handleWhitelisted
+        - event: AccountUnWhitelisted(address,address)
+          handler: handleUnWhitelisted
+        - event: AccountGreylisted(address,address)
+          handler: handleGreylisted
+        - event: AccountUnGreylisted(address,address)
+          handler: handleUnGreylisted
+        - event: TransferRequested(indexed uint256,address,address,uint256)
+          handler: handleTransferRequested
+        - event: TransferApproved(indexed uint256,indexed address,indexed address,uint256)
+          handler: handleTransferApproved
+        - event: TransferDenied(indexed uint256,indexed address,indexed address,uint256)
+          handler: handleTransferDenied
+
+  - name: Fundraiser
+    network: mainnet
+    kind: ethereum/contract
+    source:
+      abi: SwarmPoweredFundraise
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: './src/mappings/fundraiser.ts'
+      abis:
+        - name: SwarmPoweredFundraise
+          file: ./abis/SwarmPoweredFundraise.json
+      entities:
+        - Fundraiser
+      eventHandlers:
+        - event: ContributionReceived(indexed address,uint256)
+          handler: handleContributionReceived
+
+#    event ContributionRefunded(address indexed account, uint amount);
+#    event ContributorAccepted(address account);
+#    event ContributorRemoved(address account);
+#    event TokensClaimed(address indexed account, uint amount);
+#    event FundsWithdrawal(address indexed account, uint amount);
+#    event ReferralCollected(address indexed account, uint amount);
+
+#[1] swm: 0x7c2C195CD6D34B8F845992d380aADB2730bB9C6F
+#[1] swmPriceOracle: 0x8858eeB3DfffA017D4BCE9801D340D36Cf895CCf
+#[1] src20Registry: 0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7
+#[1] src20Factory: 0xf4e77E5Da47AC3125140c470c71cBca77B5c638c
+#[1] assetRegistry: 0x3619DbE27d7c1e7E91aA738697Ae7Bc5FC3eACA5
+#[1] getRateMinter: 0x038B86d9d8FAFdd0a02ebd1A476432877b0107C8
+#[1] setRateMinter: 0x500D1d6A4c7D8Ae28240b47c8FCde034D827fD5e
+#[1] affiliateManager: 0xc4905364b78a742ccce7B890A89514061E47068D
+#[1] usdc: 0xD6C850aeBFDC46D7F4c207e445cC0d6B0919BDBe

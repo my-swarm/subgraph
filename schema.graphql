@@ -1,5 +1,140 @@
-type ExampleEntity @entity {
+type Token @entity {
   id: ID!
-  count: BigInt!
-  account: Bytes! # address
+  owner: Bytes!
+  address: Bytes!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  supply: BigInt! # currently minted (i.e. staked for)
+  maxSupply: BigInt! # maximum that can be minted
+  availableSupply: BigInt! # ~ token owner balance
+  stake: BigInt!
+  kyaHash: Bytes!
+  kyaUrl: String!
+  deleted: Boolean!
+#  numWhitelisted: Int!
+#  numGraylisted: Int!
+#  numHolders: Int!
+  whitelist: [WhitelistedAccount!]! @derivedFrom(field: "token")
+  greylist: [GreylistedAccount!]! @derivedFrom(field: "token")
+  holders: [TokenHolder!]! @derivedFrom(field: "token")
+  transferRequests: [TransferRequest!]! @derivedFrom(field: "token")
+  transfers: [Transfer!]! @derivedFrom(field: "token")
+  fundraiser: Fundraiser
+  transferRules: TransferRules
+}
+
+type WhitelistedAccount @entity {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+  enabledAt: BigInt
+  disabledAt: BigInt
+  enabled: Boolean!
+  token: Token
+}
+
+type GreylistedAccount @entity {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+  enabledAt: BigInt
+  disabledAt: BigInt
+  enabled: Boolean!
+  token: Token
+}
+
+# need to be able to find token for TransferRules events
+type TransferRules @entity {
+  id: ID!
+  token: Token!
+}
+
+enum TransferRequestStatus {
+  Pending,
+  Approved,
+  Denied,
+}
+
+type TransferRequest @entity {
+  id: ID!
+  token: Token!
+  from: TokenHolder!
+  to: TokenHolder!
+  value: BigInt!
+  status: TransferRequestStatus!
+}
+
+type Transfer @entity {
+  id: ID!
+  token: Token!
+  from: TokenHolder!
+  to: TokenHolder!
+  value: BigInt!
+}
+
+type TokenHolder @entity {
+  id: ID!
+  token: Token!
+  address: Bytes!
+  balance: BigInt!
+}
+
+enum FundraiserStatus {
+  SettingUp,
+  Setup,
+  Running,
+  Finished,
+  Canceled
+}
+
+type Fundraiser @entity {
+  id: ID!
+  label: String!
+  startDate: Int!
+  endDate: Int!
+  softCap: BigInt!
+  hardCap: BigInt!
+  tokenPrice: BigInt!
+  supply: BigInt! # aka tokensToMint
+  amountQualified: BigInt!
+  amountUnqualified: BigInt!
+  amountWithdrawn: BigInt!
+  isFinished: Boolean!
+  isCanceled: Boolean!
+  isSetup: Boolean!
+  contributionsLocked: Boolean!
+  contributors: [Contributor!]! @derivedFrom(field: "fundraiser")
+  contributions: [DailyContribution!]! @derivedFrom(field: "fundraiser")
+}
+
+enum ContributorStatus {
+  Unqualified,
+  Qualified,
+  Removed
+}
+
+type Contributor @entity {
+  id: ID!
+  fundraiser: Fundraiser!
+  status: ContributorStatus!
+  address: Bytes!
+  isQualified: Boolean!
+}
+
+enum ContributionStatus {
+  Unqualified,
+  Qualified,
+  Withdrawn,
+  Refunded,
+}
+
+type DailyContribution @entity {
+  id: ID!
+  fundraiser: Fundraiser!
+  date: String!
+  pending: BigInt!
+  qualified: BigInt!
+  refunded: BigInt!
+  withdrawn: BigInt!
 }
