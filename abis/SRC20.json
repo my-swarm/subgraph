@@ -60,6 +60,19 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "address",
+        "name": "fundraiser",
+        "type": "address"
+      }
+    ],
+    "name": "FundraiserAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "previousManager",
@@ -470,7 +483,7 @@
     "name": "fundraiser",
     "outputs": [
       {
-        "internalType": "address payable",
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
@@ -685,7 +698,7 @@
     "constant": false,
     "inputs": [
       {
-        "internalType": "address payable",
+        "internalType": "address",
         "name": "_fundraiser",
         "type": "address"
       }

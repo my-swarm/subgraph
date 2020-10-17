@@ -20,7 +20,8 @@ type Token @entity {
   holders: [TokenHolder!]! @derivedFrom(field: "token")
   transferRequests: [TransferRequest!]! @derivedFrom(field: "token")
   transfers: [Transfer!]! @derivedFrom(field: "token")
-  fundraiser: Fundraiser
+  fundraisers: [Fundraiser!]! @derivedFrom(field: "token")
+  currentFundraiser: Fundraiser
   transferRules: TransferRules
 }
 
@@ -89,27 +90,33 @@ enum FundraiserStatus {
 }
 
 type Fundraiser @entity {
+  # from constructor
   id: ID!
+  token: Token!
   label: String!
   startDate: Int!
   endDate: Int!
   softCap: BigInt!
   hardCap: BigInt!
-  tokenPrice: BigInt!
   supply: BigInt! # aka tokensToMint
+  # from setup
+  baseCurrency: Bytes
+  tokenPrice: BigInt
+  affiliateManager: Bytes
+  contributorRestrictions: Bytes
+  minter: Bytes
+  contributionsLocked: Boolean
+  # computed
   amountQualified: BigInt!
-  amountUnqualified: BigInt!
+  amountPending: BigInt!
   amountWithdrawn: BigInt!
-  isFinished: Boolean!
-  isCanceled: Boolean!
-  isSetup: Boolean!
-  contributionsLocked: Boolean!
+  status: FundraiserStatus!
   contributors: [Contributor!]! @derivedFrom(field: "fundraiser")
   contributions: [DailyContribution!]! @derivedFrom(field: "fundraiser")
 }
 
 enum ContributorStatus {
-  Unqualified,
+  Pending,
   Qualified,
   Removed
 }
@@ -123,7 +130,7 @@ type Contributor @entity {
 }
 
 enum ContributionStatus {
-  Unqualified,
+  Pending,
   Qualified,
   Withdrawn,
   Refunded,
