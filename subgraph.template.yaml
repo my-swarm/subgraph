@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Registry
-    network: mainnet
+    network: {{network}}
     source:
-      address: "0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7"
+      address: "{{registryAddress}}"
       abi: SRC20Registry
-      startBlock: 0
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -31,11 +31,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: AssetRegistry
-    network: mainnet
+    network: {{network}}
     source:
-      address: "0x3619DbE27d7c1e7E91aA738697Ae7Bc5FC3eACA5"
+      address: "{{assetRegistryAddress}}"
       abi: AssetRegistry
-      startBlock: 0
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -57,11 +57,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: Factory
-    network: mainnet
+    network: {{network}}
     source:
-      address: "0xf4e77E5Da47AC3125140c470c71cBca77B5c638c"
+      address: "{{factoryAddress}}"
       abi: SRC20Factory
-      startBlock: 0
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -78,7 +78,7 @@ dataSources:
 
 templates:
   - name: Token
-    network: mainnet
+    network: {{network}}
     kind: ethereum/contract
     source:
       abi: SRC20
@@ -101,7 +101,7 @@ templates:
           handler: handleTransfer
 
   - name: TransferRules
-    network: mainnet
+    network: {{network}}
     kind: ethereum/contract
     source:
       abi: TransferRules
@@ -133,7 +133,7 @@ templates:
           handler: handleTransferDenied
 
   - name: Fundraiser
-    network: mainnet
+    network: {{network}}
     kind: ethereum/contract
     source:
       abi: Fundraiser

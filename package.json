@@ -4,15 +4,17 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "deploy.sh",
-    "create-local": "graph create --node http://localhost:8020/ my-swarm/issuance",
-    "remove-local": "graph remove --node http://localhost:8020/ my-swarm/issuance",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 my-swarm/issuance",
-    "dev:compile": "npm run codegen && npm run build",
-    "dev:deploy": "npm run create-local; npm run deploy-local"
+    "prepare": "mustache ./config/${NETWORK:-local}.json ./subgraph.template.yaml > subgraph.yaml",
+    "create:local": "graph create --node http://localhost:8020/ my-swarm/issuance",
+    "deploy:local": "NETWORK=local yarn prepare; yarn create-local; graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 my-swarm/issuance",
+    "deploy:kovan": "NETWORK=kovan yarn prepare; deploy.sh",
+    "deploy:mainnet": "NETWORK=mainnet yarn prepare; deploy.sh"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",
     "@graphprotocol/graph-ts": "0.18.0"
+  },
+  "devDependencies": {
+    "mustache": "^4.0.1"
   }
 }
