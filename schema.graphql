@@ -9,12 +9,10 @@ type Token @entity {
   maxSupply: BigInt! # maximum that can be minted
   availableSupply: BigInt! # ~ token owner balance
   stake: BigInt!
+  nav: Int!
   kyaHash: Bytes!
   kyaUrl: String!
   deleted: Boolean!
-#  numWhitelisted: Int!
-#  numGraylisted: Int!
-#  numHolders: Int!
   whitelist: [WhitelistedAccount!]! @derivedFrom(field: "token")
   greylist: [GreylistedAccount!]! @derivedFrom(field: "token")
   holders: [TokenHolder!]! @derivedFrom(field: "token")
@@ -29,9 +27,6 @@ type WhitelistedAccount @entity {
   id: ID!
   address: Bytes!
   createdAt: BigInt!
-  enabledAt: BigInt
-  disabledAt: BigInt
-  enabled: Boolean!
   token: Token
 }
 
@@ -39,9 +34,6 @@ type GreylistedAccount @entity {
   id: ID!
   address: Bytes!
   createdAt: BigInt!
-  enabledAt: BigInt
-  disabledAt: BigInt
-  enabled: Boolean!
   token: Token
 }
 
@@ -92,6 +84,7 @@ enum FundraiserStatus {
 type Fundraiser @entity {
   # from constructor
   id: ID!
+  owner: Bytes!
   token: Token!
   label: String!
   startDate: Int!
@@ -111,14 +104,15 @@ type Fundraiser @entity {
   amountPending: BigInt!
   amountWithdrawn: BigInt!
   status: FundraiserStatus!
-  contributors: [Contributor!]! @derivedFrom(field: "fundraiser")
-  contributions: [DailyContribution!]! @derivedFrom(field: "fundraiser")
+  contributors: [Contributor!] @derivedFrom(field: "fundraiser")
+  contributions: [Contribution!] @derivedFrom(field: "fundraiser")
 }
 
 enum ContributorStatus {
-  Pending,
-  Qualified,
+  Pending
+  Qualified
   Removed
+  Refunded
 }
 
 type Contributor @entity {
@@ -126,22 +120,21 @@ type Contributor @entity {
   fundraiser: Fundraiser!
   status: ContributorStatus!
   address: Bytes!
-  isQualified: Boolean!
+  amount: BigInt!
+  contributions: [Contribution!] @derivedFrom(field: "contributor")
 }
 
-enum ContributionStatus {
-  Pending,
-  Qualified,
-  Withdrawn,
-  Refunded,
+enum ContributionType {
+  Pending
+  Qualified
+  Refunded
 }
 
-type DailyContribution @entity {
+type Contribution @entity {
   id: ID!
   fundraiser: Fundraiser!
-  date: String!
-  pending: BigInt!
-  qualified: BigInt!
-  refunded: BigInt!
-  withdrawn: BigInt!
+  contributor: Contributor!
+  type: ContributionType!
+  timestamp: Int!
+  amount: BigInt!
 }

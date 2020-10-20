@@ -696,13 +696,7 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_fundraiser",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "setFundraiser",
     "outputs": [
       {

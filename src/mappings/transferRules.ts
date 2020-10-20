@@ -1,3 +1,4 @@
+import { store } from "@graphprotocol/graph-ts"
 import {
   AccountWhitelisted,
   AccountUnWhitelisted,
@@ -22,24 +23,12 @@ export function handleWhitelisted(event: AccountWhitelisted): void {
     item.token = tokenId;
     item.createdAt = event.block.timestamp;
   }
-  item.enabled = true;
-  item.enabledAt = event.block.timestamp;
   item.save();
 }
 
 export function handleUnWhitelisted(event: AccountUnWhitelisted): void {
-  let params = event.params;
   let tokenId = TransferRules.load(event.address.toHex()).token;
-  let accountId = params.account.toHex();
-
-  let id = tokenId + '_' + accountId;
-  let item = WhitelistedAccount.load(id);
-  if (item != null) {
-    item.enabled = false;
-    item.disabledAt = event.block.timestamp;
-    item.enabledAt = null;
-    item.save();
-  }
+  store.remove('WhitelistedAccount', tokenId + '_' + event.params.account.toHex());
 }
 
 export function handleGreylisted(event: AccountGreylisted): void {
@@ -55,25 +44,14 @@ export function handleGreylisted(event: AccountGreylisted): void {
     item.token = tokenId;
     item.createdAt = event.block.timestamp;
   }
-  item.enabled = true;
-  item.enabledAt = event.block.timestamp;
   item.save();
 }
 
-export function handleUnGreylisted(event: AccountUnGreylisted): void {
-  let params = event.params;
+export function handleUnGreylist(event: AccountUnGreylisted): void {
   let tokenId = TransferRules.load(event.address.toHex()).token;
-  let accountId = params.account.toHex();
-
-  let id = tokenId + '_' + accountId;
-  let item = GreylistedAccount.load(id);
-  if (item != null) {
-    item.enabled = false;
-    item.disabledAt = event.block.timestamp;
-    item.enabledAt = null;
-    item.save();
-  }
+  store.remove('GreylistedAccount', tokenId + '_' + event.params.account.toHex());
 }
+
 
 // transfer id
 // if event.params.requestId exists, <token address>_<request_id>

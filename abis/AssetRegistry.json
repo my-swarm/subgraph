@@ -35,7 +35,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "AssetValueUSD",
+        "name": "nav",
         "type": "uint256"
       }
     ],
@@ -64,7 +64,7 @@
         "type": "string"
       }
     ],
-    "name": "AssetKYAUpdated",
+    "name": "KyaUpdated",
     "type": "event"
   },
   {
@@ -79,11 +79,11 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "AssetValueUSD",
+        "name": "nav",
         "type": "uint256"
       }
     ],
-    "name": "AssetNVAUSDUpdated",
+    "name": "NavUpdated",
     "type": "event"
   },
   {
@@ -125,22 +125,22 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "bytes32",
-        "name": "kyaHash",
+        "name": "_kyaHash",
         "type": "bytes32"
       },
       {
         "internalType": "string",
-        "name": "kyaUrl",
+        "name": "_kyaUrl",
         "type": "string"
       },
       {
         "internalType": "uint256",
-        "name": "netAssetValueUSD",
+        "name": "_nav",
         "type": "uint256"
       }
     ],
@@ -179,7 +179,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "netAssetValueUSD",
+        "name": "nav",
         "type": "uint256"
       }
     ],
@@ -192,11 +192,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
-    "name": "getKYA",
+    "name": "getKya",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -218,11 +218,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
-    "name": "getKYAHash",
+    "name": "getKyaHash",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -239,11 +239,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
-    "name": "getNetAssetValueUSD",
+    "name": "getNav",
     "outputs": [
       {
         "internalType": "uint256",
@@ -314,21 +314,21 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "bytes32",
-        "name": "kyaHash",
+        "name": "_kyaHash",
         "type": "bytes32"
       },
       {
         "internalType": "string",
-        "name": "kyaUrl",
+        "name": "_kyaUrl",
         "type": "string"
       }
     ],
-    "name": "updateKYA",
+    "name": "updateKya",
     "outputs": [
       {
         "internalType": "bool",
@@ -345,16 +345,16 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "netAssetValueUSD",
+        "name": "_nav",
         "type": "uint256"
       }
     ],
-    "name": "updateNetAssetValueUSD",
+    "name": "updateNav",
     "outputs": [
       {
         "internalType": "bool",

@@ -28,12 +28,32 @@ dataSources:
           handler: handleSupplyIncreased
         - event: SRC20SupplyDecreased(address,address,uint256,uint256)
           handler: handleSupplyDecreased
-# Events skipped for now:
-# - FactoryAdded (we only use one)
-# - FactoryRemoved
-# - SRC20Registered (the logic handled by SRC20Factory.SRC20Created)
-# - MinterAdded (we only use one)
-# - MinterRemoved
+
+  - kind: ethereum/contract
+    name: AssetRegistry
+    network: mainnet
+    source:
+      address: "0x3619DbE27d7c1e7E91aA738697Ae7Bc5FC3eACA5"
+      abi: AssetRegistry
+#      startBlock: 20670075
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/assetRegistry.ts
+      abis:
+        - name: AssetRegistry
+          file: ./abis/AssetRegistry.json
+      entities:
+        - AssetRegistry
+      eventHandlers:
+        - event: AssetAdded(indexed address,bytes32,string,uint256)
+          handler: handleAssetAdded
+        - event: NavUpdated(indexed address,uint256)
+          handler: handleNavUpdated
+        - event: KyaUpdated(indexed address,bytes32,string)
+          handler: handleKyaUpdated
+
 
   - kind: ethereum/contract
     name: Factory
@@ -128,8 +148,6 @@ templates:
       entities:
         - Fundraiser
       eventHandlers:
-#        - event: FundraiserCreated(string,address,uint256,uint256,uint256,uint256,uint256)
-#          handler: handleFundraiserCreated
         - event: FundraiserSetup(address,uint256,address,address,address,bool)
           handler: handleFundraiserSetup
         - event: ContributionPending(indexed address,uint256)
@@ -138,10 +156,11 @@ templates:
           handler: handleContributionAdded
         - event: PendingContributionAccepted(indexed address,uint256)
           handler: handlePendingContributionAccepted
+        - event: ContributorRemoved(address,bool)
+          handler: handleContributorRemoved
 
-#    event ContributionRefunded(address indexed account, uint amount);
-#    event ContributorAccepted(address account);
-#    event ContributorRemoved(address account);
-#    event TokensClaimed(address indexed account, uint amount);
-#    event FundsWithdrawal(address indexed account, uint amount);
-#    event ReferralCollected(address indexed account, uint amount);
+#    event ContributionRefunded(indexed address,uint256)
+#    event ContributorAccepted(address)
+#    event TokensClaimed(indexed address,uint256)
+#    event FundsWithdrawal(indexed address,uint256)
+#    event ReferralCollected(indexed address,uint256)
