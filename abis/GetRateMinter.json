@@ -3,17 +3,17 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "registry",
+        "name": "_registry",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "asset",
+        "name": "_asset",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "SWMRate",
+        "name": "_swmRate",
         "type": "address"
       }
     ],
@@ -24,7 +24,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "_SWMPriceOracle",
+    "name": "SWMPriceOracle",
     "outputs": [
       {
         "internalType": "contract IPriceUSD",
@@ -39,7 +39,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "_asset",
+    "name": "asset",
     "outputs": [
       {
         "internalType": "contract INetAssetValueUSD",
@@ -53,25 +53,10 @@
   },
   {
     "constant": true,
-    "inputs": [],
-    "name": "_registry",
-    "outputs": [
-      {
-        "internalType": "contract IManager",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "netAssetValueUSD",
+        "name": "_nav",
         "type": "uint256"
       }
     ],
@@ -88,16 +73,31 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "registry",
+    "outputs": [
+      {
+        "internalType": "contract IManager",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "numSRC20Tokens",
+        "name": "_src20Amount",
         "type": "uint256"
       }
     ],

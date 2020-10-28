@@ -2,11 +2,11 @@
   "name": "issuance",
   "license": "UNLICENSED",
   "scripts": {
-    "codegen": "graph codegen",
+    "codegen": "yarn prepare && graph codegen",
     "build": "graph build",
     "prepare": "mustache ./config/${NETWORK:-local}.json ./subgraph.template.yaml > subgraph.yaml",
     "create:local": "graph create --node http://localhost:8020/ my-swarm/issuance",
-    "deploy:local": "NETWORK=local yarn prepare; yarn create-local; graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 my-swarm/issuance",
+    "deploy:local": "NETWORK=local yarn prepare; yarn create:local; graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 my-swarm/issuance",
     "deploy:kovan": "NETWORK=kovan yarn prepare; deploy.sh",
     "deploy:mainnet": "NETWORK=mainnet yarn prepare; deploy.sh"
   },

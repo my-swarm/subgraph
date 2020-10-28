@@ -132,13 +132,13 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "swmValue",
+        "name": "swmAmount",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "src20Value",
+        "name": "src20Amount",
         "type": "uint256"
       }
     ],
@@ -163,13 +163,13 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "swmValue",
+        "name": "swmAmount",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "src20Value",
+        "name": "src20Amount",
         "type": "uint256"
       }
     ],
@@ -223,12 +223,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "swmValue",
+        "name": "_swmAmount",
         "type": "uint256"
       }
     ],
@@ -270,17 +270,17 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "swmAccount",
+        "name": "_swmAccount",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "src20Value",
+        "name": "_src20Amount",
         "type": "uint256"
       }
     ],
@@ -322,7 +322,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
@@ -343,7 +343,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
@@ -364,7 +364,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
@@ -385,17 +385,17 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "swmAccount",
+        "name": "_swmAccount",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "src20Value",
+        "name": "_src20Amount",
         "type": "uint256"
       }
     ],
@@ -431,22 +431,22 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "swmAccount",
+        "name": "_swmAccount",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "swmValue",
+        "name": "_swmAmount",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "src20Value",
+        "name": "_src20Amount",
         "type": "uint256"
       }
     ],
@@ -581,7 +581,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
@@ -611,12 +611,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "src20Value",
+        "name": "_src20Amount",
         "type": "uint256"
       }
     ],
@@ -637,12 +637,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "newManager",
+        "name": "_newManager",
         "type": "address"
       }
     ],

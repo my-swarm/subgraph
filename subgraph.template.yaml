@@ -73,7 +73,7 @@ dataSources:
       entities:
         - Factory
       eventHandlers:
-        - event: SRC20Created(address,address,address,string,string,uint8,uint256,bytes32,string)
+        - event: SRC20Created(address,address,address,address,string,string,uint8,uint256)
           handler: handleSRC20Created
 
 templates:
@@ -132,6 +132,35 @@ templates:
         - event: TransferDenied(indexed uint256,indexed address,indexed address,uint256)
           handler: handleTransferDenied
 
+  - name: Features
+    network: {{network}}
+    kind: ethereum/contract
+    source:
+      abi: Features
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: './src/mappings/features.ts'
+      abis:
+        - name: Features
+          file: ./abis/Features.json
+      entities:
+        - Token
+        - TokenHolder
+      eventHandlers:
+        - event: FeaturesUpdated(bool,bool,bool,bool)
+          handler: handleFeaturesUpdated
+        - event: AccountFrozen(indexed address)
+          handler: handleAccountFrozen
+        - event: AccountUnfrozen(indexed address)
+          handler: handleAccountUnfrozen
+        - event: TokenFrozen()
+          handler: handleTokenFrozen
+        - event: TokenUnfrozen()
+          handler: handleTokenUnfrozen
+
+
   - name: Fundraiser
     network: {{network}}
     kind: ethereum/contract
@@ -156,6 +185,8 @@ templates:
           handler: handleContributionAdded
         - event: PendingContributionAccepted(indexed address,uint256)
           handler: handlePendingContributionAccepted
+        - event: ContributorAccepted(address)
+          handler: handleContributorAccepted
         - event: ContributorRemoved(address,bool)
           handler: handleContributorRemoved
 

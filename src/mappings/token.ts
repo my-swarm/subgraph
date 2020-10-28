@@ -8,8 +8,8 @@ import { Fundraiser as FundraiserTemplate } from '../../generated/templates';
 export function handleSRC20SupplyMinted(event: SRC20SupplyMinted): void {
   let id = event.params.src20.toHex();
   let token = Token.load(id);
-  token.supply = token.supply.plus(event.params.src20Value);
-  token.stake = token.stake.plus(event.params.swmValue);
+  token.supply = token.supply.plus(event.params.src20Amount);
+  token.stake = token.stake.plus(event.params.swmAmount);
 }
  */
 
@@ -32,9 +32,12 @@ export function handleTransfer(event: TransferEvent): void {
     holderTo.token = token.id;
     holderTo.address = params.to;
     holderTo.balance = params.value;
+    holderTo.createdAt = event.block.timestamp.toI32();
+    holderTo.isFrozen = false;
   } else {
     holderTo.balance = holderTo.balance.plus(params.value);
   }
+  holderTo.updatedAt = event.block.timestamp.toI32();
 
   holderTo.save();
 
@@ -47,6 +50,14 @@ export function handleTransfer(event: TransferEvent): void {
     transfer.value = params.value;
     transfer.save();
   }
+
+  // track available supply
+  if (token.owner == params.from) {
+    token.availableSupply = token.availableSupply.minus(params.value);
+  } else if (token.owner == params.to) {
+    token.availableSupply = token.availableSupply.plus(params.value);
+  }
+  token.save();
 }
 
 export function handleFundraiserAdded(event: FundraiserAdded): void {

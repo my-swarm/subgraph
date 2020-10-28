@@ -9,10 +9,12 @@ type Token @entity {
   maxSupply: BigInt! # maximum that can be minted
   availableSupply: BigInt! # ~ token owner balance
   stake: BigInt!
-  nav: Int!
-  kyaHash: Bytes!
-  kyaUrl: String!
-  deleted: Boolean!
+  nav: Int
+  kyaHash: Bytes
+  kyaUrl: String
+
+  isFrozen: Boolean!
+
   whitelist: [WhitelistedAccount!]! @derivedFrom(field: "token")
   greylist: [GreylistedAccount!]! @derivedFrom(field: "token")
   holders: [TokenHolder!]! @derivedFrom(field: "token")
@@ -21,6 +23,7 @@ type Token @entity {
   fundraisers: [Fundraiser!]! @derivedFrom(field: "token")
   currentFundraiser: Fundraiser
   transferRules: TransferRules
+  features: Features
 }
 
 type WhitelistedAccount @entity {
@@ -41,6 +44,16 @@ type GreylistedAccount @entity {
 type TransferRules @entity {
   id: ID!
   token: Token!
+}
+
+type Features @entity {
+  id: ID!
+  token: Token!
+
+  forceTransfer: Boolean!
+  tokenFreeze: Boolean!
+  accountFreeze: Boolean!
+  accountBurn: Boolean!
 }
 
 enum TransferRequestStatus {
@@ -71,6 +84,9 @@ type TokenHolder @entity {
   token: Token!
   address: Bytes!
   balance: BigInt!
+  createdAt: Int!
+  updatedAt: Int!
+  isFrozen: Boolean!
 }
 
 enum FundraiserStatus {
@@ -102,10 +118,11 @@ type Fundraiser @entity {
   # computed
   amountQualified: BigInt!
   amountPending: BigInt!
+  amountRefunded: BigInt!
   amountWithdrawn: BigInt!
   status: FundraiserStatus!
   contributors: [Contributor!] @derivedFrom(field: "fundraiser")
-  contributions: [Contribution!] @derivedFrom(field: "fundraiser")
+#  contributions: [Contribution!] @derivedFrom(field: "fundraiser")
 }
 
 enum ContributorStatus {
@@ -124,17 +141,14 @@ type Contributor @entity {
   contributions: [Contribution!] @derivedFrom(field: "contributor")
 }
 
-enum ContributionType {
-  Pending
-  Qualified
-  Refunded
-}
-
+# Bacause of the nature of stuff, we cannot update contributions from previous state or delete the ones with wrong state
+# For that reason, we remember all of them and the app is responsible for filtering only those where
+# contribution.type = contributor.status
 type Contribution @entity {
   id: ID!
-  fundraiser: Fundraiser!
+#  fundraiser: Fundraiser!
   contributor: Contributor!
-  type: ContributionType!
+  type: ContributorStatus!
   timestamp: Int!
   amount: BigInt!
 }

@@ -47,7 +47,7 @@ export function handleGreylisted(event: AccountGreylisted): void {
   item.save();
 }
 
-export function handleUnGreylist(event: AccountUnGreylisted): void {
+export function handleUnGreylisted(event: AccountUnGreylisted): void {
   let tokenId = TransferRules.load(event.address.toHex()).token;
   store.remove('GreylistedAccount', tokenId + '_' + event.params.account.toHex());
 }

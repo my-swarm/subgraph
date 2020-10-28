@@ -34,6 +34,12 @@
       },
       {
         "indexed": false,
+        "internalType": "address",
+        "name": "features",
+        "type": "address"
+      },
+      {
+        "indexed": false,
         "internalType": "string",
         "name": "name",
         "type": "string"
@@ -55,18 +61,6 @@
         "internalType": "uint256",
         "name": "maxTotalSupply",
         "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes32",
-        "name": "kyaHash",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "kyaUrl",
-        "type": "string"
       }
     ],
     "name": "SRC20Created",

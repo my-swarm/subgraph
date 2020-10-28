@@ -468,7 +468,7 @@
     "name": "features",
     "outputs": [
       {
-        "internalType": "contract IFeatured",
+        "internalType": "contract IFeatures",
         "name": "",
         "type": "address"
       }
