@@ -63,10 +63,13 @@ export function handleTransferRequested(event: TransferRequested): void {
   let tokenId = TransferRules.load(event.address.toHex()).token;
   let id = tokenId + '_' + params.requestId.toString();
   let transferRequest = new TransferRequest(id);
+  transferRequest.requestId = params.requestId.toI32();
   transferRequest.token = tokenId;
   transferRequest.from = params.from.toHex() + '_' + tokenId;
   transferRequest.to = params.to.toHex() + '_' + tokenId;
   transferRequest.value = params.value;
+  transferRequest.createdAt = event.block.timestamp.toI32();
+  transferRequest.updatedAt = event.block.timestamp.toI32();
   transferRequest.status = 'Pending';
   transferRequest.save();
 }
@@ -76,6 +79,7 @@ export function handleTransferApproved(event: TransferApproved): void {
   let tokenId = TransferRules.load(event.address.toHex()).token;
   let id = tokenId + '_' + params.requestId.toString();
   let transferRequest = TransferRequest.load(id);
+  transferRequest.updatedAt = event.block.timestamp.toI32();
   transferRequest.status = 'Approved';
   transferRequest.save();
 }
@@ -85,6 +89,7 @@ export function handleTransferDenied(event: TransferDenied): void {
   let tokenId = TransferRules.load(event.address.toHex()).token;
   let id = tokenId + '_' + params.requestId.toString();
   let transferRequest = TransferRequest.load(id);
+  transferRequest.updatedAt = event.block.timestamp.toI32();
   transferRequest.status = 'Denied';
   transferRequest.save();
 }

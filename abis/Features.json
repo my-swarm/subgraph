@@ -107,18 +107,6 @@
   },
   {
     "anonymous": false,
-    "inputs": [],
-    "name": "TokenFrozen",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [],
-    "name": "TokenUnfrozen",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
     "inputs": [
       {
         "indexed": false,

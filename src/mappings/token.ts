@@ -48,6 +48,7 @@ export function handleTransfer(event: TransferEvent): void {
     transfer.from = idFrom;
     transfer.to = idTo;
     transfer.value = params.value;
+    transfer.createdAt = event.block.timestamp.toI32();
     transfer.save();
   }
 

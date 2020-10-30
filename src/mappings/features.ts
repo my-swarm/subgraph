@@ -3,8 +3,8 @@ import {
   FeaturesUpdated,
   AccountFrozen,
   AccountUnfrozen,
-  TokenFrozen,
-  TokenUnfrozen,
+  Paused,
+  Unpaused,
 } from '../../generated/templates/Features/Features';
 import { Token, TokenHolder, Features } from '../../generated/schema';
 
@@ -34,17 +34,19 @@ export function handleAccountUnfrozen(event: AccountUnfrozen): void {
   holder.save();
 }
 
-export function handleTokenFrozen(event: TokenFrozen): void {
+export function handleTokenFrozen(event: Paused): void {
   let tokenId = Features.load(event.address.toHex()).token;
   let token = Token.load(tokenId);
   token.isFrozen = true;
+  token.isFrozenBy = event.params.account
   token.save();
 }
 
-export function handleTokenUnfrozen(event: TokenUnfrozen): void {
+export function handleTokenUnfrozen(event: Unpaused): void {
   let tokenId = Features.load(event.address.toHex()).token;
   let token = Token.load(tokenId);
-  token.isFrozen = true;
+  token.isFrozen = false;
+  token.isFrozenBy = null;
   token.save();
 }
 

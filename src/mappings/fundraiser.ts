@@ -7,26 +7,12 @@ import {
   PendingContributionAccepted,
   ContributorAccepted,
   ContributorRemoved,
+  FundraiserFinished,
+  FundraiserCanceled
 } from '../../generated/templates/Fundraiser/Fundraiser';
 import { Fundraiser, Contributor, Contribution } from '../../generated/schema';
 
-/*
-export function handleFundraiserCreated(event: FundraiserCreated): void {
-  let address = event.address;
-  let params = event.params;
-  let id = address.toHex();
-  let fundraiser = new Fundraiser(id);
-  fundraiser.label = params.label;
-  fundraiser.token = params.token.toHex();
-  fundraiser.supply = params.supply;
-  fundraiser.startDate = params.startDate.toI32();
-  fundraiser.endDate = params.endDate.toI32();
-  fundraiser.softCap = params.softCap;
-  fundraiser.hardCap = params.hardCap;
-  fundraiser.status = 'SettingUp';
-  fundraiser.save();
-}
- */
+
 export function handleFundraiserSetup(event: FundraiserSetup): void {
   let address = event.address;
   let params = event.params;
@@ -56,6 +42,18 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   fundraiser.amountRefunded = BigInt.fromI32(0);
   fundraiser.amountWithdrawn = BigInt.fromI32(0);
   fundraiser.status = 'Running';
+  fundraiser.save();
+}
+
+export function handleFundraiserFinished(event: FundraiserFinished): void {
+  let fundraiser = new Fundraiser(event.address.toHex());
+  fundraiser.status = 'Finished';
+  fundraiser.save();
+}
+
+export function handleFundraiserCanceled(event: FundraiserCanceled): void {
+  let fundraiser = new Fundraiser(event.address.toHex());
+  fundraiser.status = 'Finished';
   fundraiser.save();
 }
 

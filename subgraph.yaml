@@ -70,8 +70,11 @@ dataSources:
       abis:
         - name: SRC20Factory
           file: ./abis/SRC20Factory.json
+        - name: Features
+          file: ./abis/Features.json
       entities:
         - Factory
+        - Features
       eventHandlers:
         - event: SRC20Created(address,address,address,address,string,string,uint8,uint256)
           handler: handleSRC20Created
@@ -146,6 +149,7 @@ templates:
         - name: Features
           file: ./abis/Features.json
       entities:
+        - Features
         - Token
         - TokenHolder
       eventHandlers:
@@ -155,9 +159,9 @@ templates:
           handler: handleAccountFrozen
         - event: AccountUnfrozen(indexed address)
           handler: handleAccountUnfrozen
-        - event: TokenFrozen()
+        - event: Paused(address)
           handler: handleTokenFrozen
-        - event: TokenUnfrozen()
+        - event: Unpaused(address)
           handler: handleTokenUnfrozen
 
 
@@ -179,6 +183,10 @@ templates:
       eventHandlers:
         - event: FundraiserSetup(address,uint256,address,address,address,bool)
           handler: handleFundraiserSetup
+        - event: FundraiserFinished()
+          handler: handleFundraiserFinished
+        - event: FundraiserCanceled()
+          handler: handleFundraiserCanceled
         - event: ContributionPending(indexed address,uint256)
           handler: handleContributionPending
         - event: ContributionAdded(indexed address,uint256)
