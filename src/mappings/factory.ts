@@ -1,5 +1,5 @@
 import { BigInt, Address } from "@graphprotocol/graph-ts"
-import { Token, TransferRules, Features } from '../../generated/schema';
+import { Token, TransferRules, Features, Roles } from '../../generated/schema';
 import { Token as TokenTemplate, TransferRules as TransferRulesTemplate, Features as FeaturesTemplate } from '../../generated/templates';
 import { SRC20Created } from '../../generated/Factory/SRC20Factory';
 import { Features as FeaturesContract } from '../../generated/templates/Features/Features'
@@ -22,6 +22,7 @@ export function handleSRC20Created(event: SRC20Created): void {
 
   let transferRulesId = params.transferRules.toHex();
   let transferRules = new TransferRules(transferRulesId);
+  transferRules.address = params.transferRules;
   transferRules.token = tokenId
   token.transferRules = transferRulesId;
 
@@ -36,10 +37,19 @@ export function handleSRC20Created(event: SRC20Created): void {
   features.accountFreeze = (featuresBitmap & 0x08) !== 0;
 
   features.token = tokenId;
+  features.address = params.features;
   token.features = featuresId;
+
+  let rolesId = params.roles.toHex();
+  let roles = new Roles(rolesId);
+  roles.token = tokenId;
+  roles.address = params.roles;
+  token.roles = rolesId;
+
 
   transferRules.save();
   features.save();
+  roles.save();
   token.save();
 
   TokenTemplate.create(params.token as Address);

@@ -22,9 +22,11 @@ type Token @entity {
   transferRequests: [TransferRequest!]! @derivedFrom(field: "token")
   transfers: [Transfer!]! @derivedFrom(field: "token")
   fundraisers: [Fundraiser!]! @derivedFrom(field: "token")
+
   currentFundraiser: Fundraiser
   transferRules: TransferRules
   features: Features
+  roles: Roles
 }
 
 type WhitelistedAccount @entity {
@@ -44,17 +46,25 @@ type GreylistedAccount @entity {
 # need to be able to find token for TransferRules events
 type TransferRules @entity {
   id: ID!
+  address: Bytes
   token: Token!
 }
 
 type Features @entity {
   id: ID!
+  address: Bytes
   token: Token!
 
   forceTransfer: Boolean!
   tokenFreeze: Boolean!
   accountFreeze: Boolean!
   accountBurn: Boolean!
+}
+
+type Roles @entity {
+  id: ID!
+  address: Bytes
+  token: Token!
 }
 
 enum TransferRequestStatus {
@@ -105,6 +115,7 @@ enum FundraiserStatus {
 type Fundraiser @entity {
   # from constructor
   id: ID!
+  address: Bytes!
   owner: Bytes!
   token: Token!
   label: String!

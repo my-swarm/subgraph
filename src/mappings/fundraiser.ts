@@ -21,6 +21,7 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   let contract = FundraiserContract.bind(address);
 
   fundraiser.owner = event.transaction.from;
+  fundraiser.address = address;
 
   fundraiser.label = contract.label();
   fundraiser.token = contract.token().toHex();

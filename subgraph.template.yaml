@@ -76,7 +76,7 @@ dataSources:
         - Factory
         - Features
       eventHandlers:
-        - event: SRC20Created(address,address,address,address,string,string,uint8,uint256)
+        - event: SRC20Created(address,address,address,address,address,string,string,uint8,uint256)
           handler: handleSRC20Created
 
 templates:
