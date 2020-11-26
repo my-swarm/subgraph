@@ -3,12 +3,12 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "priceNumerator",
+        "name": "_priceNumerator",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "priceDenominator",
+        "name": "_priceDenominator",
         "type": "uint256"
       }
     ],
@@ -69,46 +69,16 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "_priceDenominator",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "_priceNumerator",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
     "name": "getPrice",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "priceNumerator",
+        "name": "numerator",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "priceDenominator",
+        "name": "denominator",
         "type": "uint256"
       }
     ],
@@ -147,6 +117,36 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "priceDenominator",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "priceNumerator",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [],
     "name": "renounceOwnership",
@@ -175,12 +175,12 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "priceNumerator",
+        "name": "_priceNumerator",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "priceDenominator",
+        "name": "_priceDenominator",
         "type": "uint256"
       }
     ],

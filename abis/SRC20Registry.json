@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "swmERC20",
+        "name": "_swmERC20",
         "type": "address"
       }
     ],
@@ -181,7 +181,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -202,7 +202,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "minter",
+        "name": "_minter",
         "type": "address"
       }
     ],
@@ -228,11 +228,11 @@
       },
       {
         "internalType": "uint256",
-        "name": "_swmAmount",
+        "name": "_src20Amount",
         "type": "uint256"
       }
     ],
-    "name": "calcTokens",
+    "name": "computeStake",
     "outputs": [
       {
         "internalType": "uint256",
@@ -249,7 +249,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "token",
+        "name": "_token",
         "type": "address"
       }
     ],
@@ -301,7 +301,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "src20",
+        "name": "_src20",
         "type": "address"
       }
     ],
@@ -318,24 +318,24 @@
     "type": "function"
   },
   {
-    "constant": false,
+    "constant": true,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_src20",
+        "name": "_token",
         "type": "address"
       }
     ],
-    "name": "getSrc20toSwmRatio",
+    "name": "getRoles",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "address",
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -343,7 +343,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_src20",
+        "name": "_token",
         "type": "address"
       }
     ],
@@ -364,7 +364,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_src20",
+        "name": "_token",
         "type": "address"
       }
     ],
@@ -374,6 +374,48 @@
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      }
+    ],
+    "name": "hasFactory",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_minter",
+        "type": "address"
+      }
+    ],
+    "name": "hasMinter",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "payable": false,
@@ -482,22 +524,22 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "token",
+        "name": "_token",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "roles",
+        "name": "_roles",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "tokenOwner",
+        "name": "_tokenOwner",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "minter",
+        "name": "_minter",
         "type": "address"
       }
     ],
@@ -518,7 +560,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "token",
+        "name": "_token",
         "type": "address"
       }
     ],
@@ -539,7 +581,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -560,7 +602,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "minter",
+        "name": "_minter",
         "type": "address"
       }
     ],
@@ -604,32 +646,6 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_src20",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_src20Amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "swmNeeded",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {

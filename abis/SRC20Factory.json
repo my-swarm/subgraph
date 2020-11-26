@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "registry",
+        "name": "_registry",
         "type": "address"
       }
     ],
@@ -30,6 +30,12 @@
         "indexed": false,
         "internalType": "address",
         "name": "transferRules",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "roles",
         "type": "address"
       },
       {
@@ -71,42 +77,42 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "name",
+        "name": "_name",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "symbol",
+        "name": "_symbol",
         "type": "string"
       },
       {
         "internalType": "uint8",
-        "name": "decimals",
+        "name": "_decimals",
         "type": "uint8"
       },
       {
         "internalType": "uint256",
-        "name": "maxTotalSupply",
+        "name": "_maxTotalSupply",
         "type": "uint256"
       },
       {
         "internalType": "bytes32",
-        "name": "kyaHash",
+        "name": "_kyaHash",
         "type": "bytes32"
       },
       {
         "internalType": "string",
-        "name": "kyaUrl",
+        "name": "_kyaUrl",
         "type": "string"
       },
       {
         "internalType": "uint256",
-        "name": "netAssetValueUSD",
+        "name": "_netAssetValueUSD",
         "type": "uint256"
       },
       {
         "internalType": "address[]",
-        "name": "addressList",
+        "name": "_addressList",
         "type": "address[]"
       }
     ],

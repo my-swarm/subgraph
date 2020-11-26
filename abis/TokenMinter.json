@@ -78,7 +78,7 @@
     "name": "registry",
     "outputs": [
       {
-        "internalType": "contract IManager",
+        "internalType": "contract ISRC20Registry",
         "name": "",
         "type": "address"
       }

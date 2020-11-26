@@ -3,17 +3,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "owner",
+        "name": "_manager",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "manager",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "rules",
+        "name": "_transferRules",
         "type": "address"
       }
     ],
@@ -116,7 +111,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -137,7 +132,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -158,7 +153,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -179,7 +174,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -200,7 +195,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -266,7 +261,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -287,7 +282,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "_account",
         "type": "address"
       }
     ],
@@ -332,7 +327,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "newManager",
+        "name": "_newManager",
         "type": "address"
       }
     ],
