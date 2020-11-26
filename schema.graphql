@@ -29,6 +29,14 @@ type Token @entity {
   roles: Roles
 }
 
+type Erc20Token @entity {
+  id: ID!
+  address: Bytes!
+  name: String!
+  symbol: String!
+  decimals: Int!
+}
+
 type WhitelistedAccount @entity {
   id: ID!
   address: Bytes!
@@ -125,7 +133,7 @@ type Fundraiser @entity {
   hardCap: BigInt!
   supply: BigInt! # aka tokensToMint
   # from setup
-  baseCurrency: Bytes
+  baseCurrency: Erc20Token
   tokenPrice: BigInt
   affiliateManager: Bytes
   contributorRestrictions: Bytes

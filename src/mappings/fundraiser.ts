@@ -1,4 +1,4 @@
-import { BigInt, Address, store, log } from "@graphprotocol/graph-ts"
+import { BigInt, Address, store, log, ethereum } from "@graphprotocol/graph-ts"
 import {
   Fundraiser as FundraiserContract,
   FundraiserSetup,
@@ -10,7 +10,8 @@ import {
   FundraiserFinished,
   FundraiserCanceled
 } from '../../generated/templates/Fundraiser/Fundraiser';
-import { Fundraiser, Contributor, Contribution } from '../../generated/schema';
+import { ERC20 as ERC20Contract } from '../../generated/templates/Fundraiser/ERC20';
+import { Fundraiser, Contributor, Contribution, Erc20Token } from '../../generated/schema';
 
 
 export function handleFundraiserSetup(event: FundraiserSetup): void {
@@ -31,7 +32,15 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   fundraiser.softCap = contract.softCap();
   fundraiser.hardCap = contract.hardCap();
 
-  fundraiser.baseCurrency = params.baseCurrency;
+  let erc20 = ERC20Contract.bind(params.baseCurrency);
+  let baseCurrencyId = params.baseCurrency.toHex();
+  let baseCurrency = new Erc20Token(baseCurrencyId)
+  baseCurrency.address = params.baseCurrency;
+  baseCurrency.name = erc20.name();
+  baseCurrency.symbol = erc20.symbol();
+  baseCurrency.decimals = erc20.decimals();
+
+  fundraiser.baseCurrency = baseCurrencyId;
   fundraiser.tokenPrice = params.tokenPrice;
   fundraiser.affiliateManager = params.affiliateManager;
   fundraiser.contributorRestrictions = params.contributorRestrictions;
@@ -47,13 +56,13 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
 }
 
 export function handleFundraiserFinished(event: FundraiserFinished): void {
-  let fundraiser = new Fundraiser(event.address.toHex());
+  let fundraiser = Fundraiser.load(event.address.toHex());
   fundraiser.status = 'Finished';
   fundraiser.save();
 }
 
 export function handleFundraiserCanceled(event: FundraiserCanceled): void {
-  let fundraiser = new Fundraiser(event.address.toHex());
+  let fundraiser = Fundraiser.load(event.address.toHex());
   fundraiser.status = 'Finished';
   fundraiser.save();
 }

@@ -54,7 +54,6 @@ dataSources:
         - event: KyaUpdated(indexed address,bytes32,string)
           handler: handleKyaUpdated
 
-
   - kind: ethereum/contract
     name: Factory
     network: mainnet
@@ -78,6 +77,7 @@ dataSources:
       eventHandlers:
         - event: SRC20Created(address,address,address,address,address,string,string,uint8,uint256)
           handler: handleSRC20Created
+
 
 templates:
   - name: Token
@@ -178,8 +178,11 @@ templates:
       abis:
         - name: Fundraiser
           file: ./abis/Fundraiser.json
+        - name: ERC20
+          file: ./abis/ERC20.json
       entities:
         - Fundraiser
+        - ERC20
       eventHandlers:
         - event: FundraiserSetup(address,uint256,address,address,address,bool)
           handler: handleFundraiserSetup
