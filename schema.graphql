@@ -98,7 +98,9 @@ type Transfer @entity {
   createdAt: Int!
   token: Token!
   from: TokenHolder!
+  fromAddress: Bytes!
   to: TokenHolder!
+  toAddress: Bytes!
   value: BigInt!
 }
 
@@ -145,6 +147,7 @@ type Fundraiser @entity {
   amountRefunded: BigInt!
   amountWithdrawn: BigInt!
   status: FundraiserStatus!
+  numContributors: Int!
   contributors: [Contributor!] @derivedFrom(field: "fundraiser")
 #  contributions: [Contribution!] @derivedFrom(field: "fundraiser")
 }

@@ -39,6 +39,7 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   baseCurrency.name = erc20.name();
   baseCurrency.symbol = erc20.symbol();
   baseCurrency.decimals = erc20.decimals();
+  baseCurrency.save();
 
   fundraiser.baseCurrency = baseCurrencyId;
   fundraiser.tokenPrice = params.tokenPrice;
@@ -52,6 +53,7 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   fundraiser.amountRefunded = BigInt.fromI32(0);
   fundraiser.amountWithdrawn = BigInt.fromI32(0);
   fundraiser.status = 'Running';
+  fundraiser.numContributors = 0;
   fundraiser.save();
 }
 
@@ -155,6 +157,10 @@ export function handleContributorAccepted(event: ContributorAccepted): void {
   let contributor = createOrLoadContributor(fundraiserId, params.account);
   contributor.status = 'Qualified';
   contributor.save();
+
+  let fundraiser = Fundraiser.load(fundraiserId);
+  fundraiser.numContributors++;
+  fundraiser.save();
 }
 
 export function handleContributorRemoved(event: ContributorRemoved): void {
@@ -171,6 +177,9 @@ export function handleContributorRemoved(event: ContributorRemoved): void {
       fundraiser.amountQualified = fundraiser.amountQualified.minus(contributor.amount);
     }
     fundraiser.amountRefunded = fundraiser.amountRefunded.plus(contributor.amount);
+    fundraiser.numContributors++;
+    fundraiser.save();
+
     fundraiser.save();
 
     contributor.status = params.forced ? 'Removed' : 'Refunded';

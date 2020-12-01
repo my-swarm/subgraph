@@ -46,7 +46,9 @@ export function handleTransfer(event: TransferEvent): void {
     let transfer = new Transfer(transferId);
     transfer.token = token.id;
     transfer.from = idFrom;
+    transfer.fromAddress = params.from;
     transfer.to = idTo;
+    transfer.toAddress = params.to;
     transfer.value = params.value;
     transfer.createdAt = event.block.timestamp.toI32();
     transfer.save();
