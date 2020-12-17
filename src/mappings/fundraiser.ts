@@ -11,7 +11,8 @@ import {
   FundraiserCanceled
 } from '../../generated/templates/Fundraiser/Fundraiser';
 import { ERC20 as ERC20Contract } from '../../generated/templates/Fundraiser/ERC20';
-import { Fundraiser, Contributor, Contribution, Erc20Token } from '../../generated/schema';
+import { Fundraiser, Contributor, Contribution, Erc20Token, AffiliateManager } from '../../generated/schema';
+import { AffiliateManager as AffiliateManagerTemplate } from '../../generated/templates';
 
 
 export function handleFundraiserSetup(event: FundraiserSetup): void {
@@ -20,6 +21,17 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   let fundraiserId = address.toHex();
   let fundraiser = new Fundraiser(fundraiserId);
   let contract = FundraiserContract.bind(address);
+
+  let affiliateManagerId = params.affiliateManager.toHex();
+  if (affiliateManagerId != '0x0000000000000000000000000000000000000000') {
+    AffiliateManagerTemplate.create(params.affiliateManager as Address)
+    let affiliateManager = new AffiliateManager(affiliateManagerId);
+    affiliateManager.address = params.affiliateManager;
+    affiliateManager.fundraiser = fundraiserId;
+    affiliateManager.save();
+  } else {
+    affiliateManagerId = null;
+  }
 
   fundraiser.owner = event.transaction.from;
   fundraiser.address = address;
@@ -43,8 +55,9 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
 
   fundraiser.baseCurrency = baseCurrencyId;
   fundraiser.tokenPrice = params.tokenPrice;
-  fundraiser.affiliateManager = params.affiliateManager;
+  fundraiser.affiliateManager = affiliateManagerId;
   fundraiser.contributorRestrictions = params.contributorRestrictions;
+  fundraiser.fundraiserManager = params.fundraiserManager;
   fundraiser.minter = params.minter;
   fundraiser.contributionsLocked = params.contributionsLocked;
 

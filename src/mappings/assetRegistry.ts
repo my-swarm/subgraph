@@ -7,12 +7,14 @@ export function handleAssetAdded(event: AssetAdded): void {
   token.kyaHash = params.kyaHash;
   token.kyaUrl = params.kyaUrl;
   token.nav = params.nav.toI32();
+  token.save();
 }
 
 export function handleNavUpdated(event: NavUpdated): void {
   let params = event.params;
   let token = Token.load(params.src20.toHex());
   token.nav = params.nav.toI32();
+  token.save();
 }
 
 export function handleKyaUpdated(event: KyaUpdated): void {
@@ -20,5 +22,6 @@ export function handleKyaUpdated(event: KyaUpdated): void {
   let token = Token.load(params.src20.toHex());
   token.kyaHash = params.kyaHash;
   token.kyaUrl = params.kyaUrl;
+  token.save();
 }
 

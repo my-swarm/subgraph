@@ -240,6 +240,12 @@
       {
         "indexed": false,
         "internalType": "address",
+        "name": "fundraiserManager",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
         "name": "minter",
         "type": "address"
       },
@@ -614,6 +620,21 @@
     "constant": true,
     "inputs": [],
     "name": "endDate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "fee",
     "outputs": [
       {
         "internalType": "uint256",

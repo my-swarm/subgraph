@@ -184,7 +184,7 @@ templates:
         - Fundraiser
         - ERC20
       eventHandlers:
-        - event: FundraiserSetup(address,uint256,address,address,address,bool)
+        - event: FundraiserSetup(address,uint256,address,address,address,address,bool)
           handler: handleFundraiserSetup
         - event: FundraiserFinished()
           handler: handleFundraiserFinished
@@ -201,8 +201,24 @@ templates:
         - event: ContributorRemoved(address,bool)
           handler: handleContributorRemoved
 
-#    event ContributionRefunded(indexed address,uint256)
-#    event ContributorAccepted(address)
-#    event TokensClaimed(indexed address,uint256)
-#    event FundsWithdrawal(indexed address,uint256)
-#    event ReferralCollected(indexed address,uint256)
+  - name: AffiliateManager
+    network: mainnet
+    kind: ethereum/contract
+    source:
+      abi: AffiliateManager
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: './src/mappings/affiliateManager.ts'
+      abis:
+        - name: AffiliateManager
+          file: ./abis/AffiliateManager.json
+      entities:
+        - AffiliateManager
+      eventHandlers:
+        - event: AffiliateAddedOrUpdated(address,string,uint256)
+          handler: affiliateAddedOrUpdated
+        - event: AffiliateRemoved(address)
+          handler: affiliateRemoved
+
