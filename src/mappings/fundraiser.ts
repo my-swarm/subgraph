@@ -44,16 +44,26 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   fundraiser.softCap = contract.softCap();
   fundraiser.hardCap = contract.hardCap();
 
-  let erc20 = ERC20Contract.bind(params.baseCurrency);
   let baseCurrencyId = params.baseCurrency.toHex();
-  let baseCurrency = new Erc20Token(baseCurrencyId)
-  baseCurrency.address = params.baseCurrency;
-  baseCurrency.name = erc20.name();
-  baseCurrency.symbol = erc20.symbol();
-  baseCurrency.decimals = erc20.decimals();
-  baseCurrency.save();
+  let baseCurrency = Erc20Token.load(baseCurrencyId);
+  if (!baseCurrency) {
+    let baseCurrency = new Erc20Token(baseCurrencyId)
+    let erc20 = ERC20Contract.bind(params.baseCurrency);
+    let wrongBaseCurrency = erc20.try_name().reverted || erc20.try_symbol().reverted && erc20.try_decimals().reverted;
+    if (wrongBaseCurrency) {
+      // todo: this is not the best solution, should figure out something more generic
+      return;
+      // someone passed an incorrect base currency.
+    }
+    baseCurrency.address = params.baseCurrency;
+    baseCurrency.name = erc20.name();
+    baseCurrency.symbol = erc20.symbol();
+    baseCurrency.decimals = erc20.decimals();
+    baseCurrency.save();
+  }
 
   fundraiser.baseCurrency = baseCurrencyId;
+
   fundraiser.tokenPrice = params.tokenPrice;
   fundraiser.affiliateManager = affiliateManagerId;
   fundraiser.contributorRestrictions = params.contributorRestrictions;

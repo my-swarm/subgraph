@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Registry
-    network: mainnet
+    network: kovan
     source:
-      address: "0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7"
+      address: "0x6b31E9CfB850C369C0949354a1180503B2edD3f3"
       abi: SRC20Registry
-      startBlock: 0
+      startBlock: 22650000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -31,11 +31,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: AssetRegistry
-    network: mainnet
+    network: kovan
     source:
-      address: "0x3619DbE27d7c1e7E91aA738697Ae7Bc5FC3eACA5"
+      address: "0x773A37B67727948FF623Eca7C96A4985c67f8262"
       abi: AssetRegistry
-      startBlock: 0
+      startBlock: 22650000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -56,11 +56,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: Factory
-    network: mainnet
+    network: kovan
     source:
-      address: "0xf4e77E5Da47AC3125140c470c71cBca77B5c638c"
+      address: "0xf22F0622755cEC4e376C91dE0B5FfC4BEb60c66C"
       abi: SRC20Factory
-      startBlock: 0
+      startBlock: 22650000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -81,7 +81,7 @@ dataSources:
 
 templates:
   - name: Token
-    network: mainnet
+    network: kovan
     kind: ethereum/contract
     source:
       abi: SRC20
@@ -104,7 +104,7 @@ templates:
           handler: handleTransfer
 
   - name: TransferRules
-    network: mainnet
+    network: kovan
     kind: ethereum/contract
     source:
       abi: TransferRules
@@ -136,7 +136,7 @@ templates:
           handler: handleTransferDenied
 
   - name: Features
-    network: mainnet
+    network: kovan
     kind: ethereum/contract
     source:
       abi: Features
@@ -166,7 +166,7 @@ templates:
 
 
   - name: Fundraiser
-    network: mainnet
+    network: kovan
     kind: ethereum/contract
     source:
       abi: Fundraiser
@@ -202,7 +202,7 @@ templates:
           handler: handleContributorRemoved
 
   - name: AffiliateManager
-    network: mainnet
+    network: kovan
     kind: ethereum/contract
     source:
       abi: AffiliateManager
