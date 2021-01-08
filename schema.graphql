@@ -135,13 +135,13 @@ type Fundraiser @entity {
   hardCap: BigInt!
   supply: BigInt! # aka tokensToMint
   # from setup
-  baseCurrency: Erc20Token
-  tokenPrice: BigInt
+  baseCurrency: Erc20Token!
+  tokenPrice: BigInt!
   affiliateManager: AffiliateManager
-  contributorRestrictions: Bytes
-  fundraiserManager: Bytes
-  minter: Bytes
-  contributionsLocked: Boolean
+  contributorRestrictions: Bytes!
+  fundraiserManager: Bytes!
+  minter: Bytes!
+  contributionsLocked: Boolean!
   # computed
   amountQualified: BigInt!
   amountPending: BigInt!
@@ -151,6 +151,7 @@ type Fundraiser @entity {
   numContributors: Int!
   contributors: [Contributor!] @derivedFrom(field: "fundraiser")
   affiliates: [Affiliate!] @derivedFrom(field: "fundraiser")
+  search: String
 #  contributions: [Contribution!] @derivedFrom(field: "fundraiser")
 }
 

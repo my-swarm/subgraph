@@ -11,7 +11,7 @@ import {
   FundraiserCanceled
 } from '../../generated/templates/Fundraiser/Fundraiser';
 import { ERC20 as ERC20Contract } from '../../generated/templates/Fundraiser/ERC20';
-import { Fundraiser, Contributor, Contribution, Erc20Token, AffiliateManager } from '../../generated/schema';
+import { Fundraiser, Token, Contributor, Contribution, Erc20Token, AffiliateManager } from '../../generated/schema';
 import { AffiliateManager as AffiliateManagerTemplate } from '../../generated/templates';
 
 
@@ -77,6 +77,8 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   fundraiser.amountWithdrawn = BigInt.fromI32(0);
   fundraiser.status = 'Running';
   fundraiser.numContributors = 0;
+  let token = Token.load(fundraiser.token);
+  fundraiser.search = fundraiser.label + ' ' + token.name + ' ' + token.symbol + ' ' + fundraiser.id + ' ' + token.id;
   fundraiser.save();
 }
 
