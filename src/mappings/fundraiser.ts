@@ -41,6 +41,7 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   fundraiser.supply = contract.supply();
   fundraiser.startDate = contract.startDate().toI32();
   fundraiser.endDate = contract.endDate().toI32();
+  fundraiser.createdAt = event.block.timestamp.toI32();
   fundraiser.softCap = contract.softCap();
   fundraiser.hardCap = contract.hardCap();
 

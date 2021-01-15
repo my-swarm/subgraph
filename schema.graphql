@@ -131,6 +131,7 @@ type Fundraiser @entity {
   label: String!
   startDate: Int!
   endDate: Int!
+  createdAt: Int!
   softCap: BigInt!
   hardCap: BigInt!
   supply: BigInt! # aka tokensToMint
