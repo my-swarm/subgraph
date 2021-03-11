@@ -19,65 +19,29 @@ dataSources:
       abis:
         - name: SRC20Registry
           file: ./abis/SRC20Registry.json
-      entities:
-        - Registry
-      eventHandlers:
-        - event: SRC20Removed(address)
-          handler: handleSRC20Removed
-        - event: SRC20SupplyIncreased(address,address,uint256,uint256)
-          handler: handleSupplyIncreased
-        - event: SRC20SupplyDecreased(address,address,uint256,uint256)
-          handler: handleSupplyDecreased
-
-  - kind: ethereum/contract
-    name: AssetRegistry
-    network: {{network}}
-    source:
-      address: "{{assetRegistryAddress}}"
-      abi: AssetRegistry
-      startBlock: {{startBlock}}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      file: ./src/mappings/assetRegistry.ts
-      abis:
-        - name: AssetRegistry
-          file: ./abis/AssetRegistry.json
-      entities:
-        - AssetRegistry
-      eventHandlers:
-        - event: AssetAdded(indexed address,bytes32,string,uint256)
-          handler: handleAssetAdded
-        - event: NavUpdated(indexed address,uint256)
-          handler: handleNavUpdated
-        - event: KyaUpdated(indexed address,bytes32,string)
-          handler: handleKyaUpdated
-
-  - kind: ethereum/contract
-    name: Factory
-    network: {{network}}
-    source:
-      address: "{{factoryAddress}}"
-      abi: SRC20Factory
-      startBlock: {{startBlock}}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      file: ./src/mappings/factory.ts
-      abis:
-        - name: SRC20Factory
-          file: ./abis/SRC20Factory.json
+        - name: SRC20
+          file: ./abis/SRC20.json
         - name: Features
           file: ./abis/Features.json
       entities:
-        - Factory
+        - Registry
+        - Token
         - Features
       eventHandlers:
-        - event: SRC20Created(address,address,address,address,address,string,string,uint8,uint256)
-          handler: handleSRC20Created
-
+        - event: Deployed(address,address)
+          handler: handleDeployed
+        - event: TreasuryUpdated(address)
+          handler: handleTreasuryUpdated
+        - event: RewardPoolUpdated(address)
+          handler: handleRewardPoolUpdated
+        - event: MinterAdded(address)
+          handler: handleMinterAdded
+        - event: MinterRemoved(address)
+          handler: handleMinterRemoved
+        - event: SRC20Registered(address,address)
+          handler: handleSRC20Registered
+        - event: SRC20Unregistered(address)
+          handler: handleSRC20Unregistered
 
 templates:
   - name: Token
@@ -98,10 +62,17 @@ templates:
         - TokenHolder
         - Transfer
       eventHandlers:
-        - event: FundraiserAdded(address)
-          handler: handleFundraiserAdded
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
+        # new ones
+        - event: NavUpdated(uint256)
+          handler: handleNavUpdated
+        - event: KyaUpdated(string)
+          handler: handleKyaUpdated
+        - event: SupplyMinted(uint256,address)
+          handler: handleSupplyMinted
+        - event: SupplyBurned(uint256,address)
+          handler: handleSupplyBurned
 
   - name: TransferRules
     network: {{network}}
@@ -114,6 +85,8 @@ templates:
       language: wasm/assemblyscript
       file: './src/mappings/transferRules.ts'
       abis:
+        - name: SRC20
+          file: ./abis/SRC20.json
         - name: TransferRules
           file: ./abis/TransferRules.json
       entities:
@@ -153,7 +126,7 @@ templates:
         - Token
         - TokenHolder
       eventHandlers:
-        - event: FeaturesUpdated(bool,bool,bool,bool)
+        - event: FeaturesUpdated(bool,bool,bool,bool,bool)
           handler: handleFeaturesUpdated
         - event: AccountFrozen(indexed address)
           handler: handleAccountFrozen

@@ -40,16 +40,8 @@ export function handleSRC20Created(event: SRC20Created): void {
   features.address = params.features;
   token.features = featuresId;
 
-  let rolesId = params.roles.toHex();
-  let roles = new Roles(rolesId);
-  roles.token = tokenId;
-  roles.address = params.roles;
-  token.roles = rolesId;
-
-
   transferRules.save();
   features.save();
-  roles.save();
   token.save();
 
   TokenTemplate.create(params.token as Address);

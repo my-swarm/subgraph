@@ -1,8 +1,6 @@
 {
   "network": "mainnet",
-  "registryAddress": "0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7",
-  "assetRegistryAddress": "0x3619DbE27d7c1e7E91aA738697Ae7Bc5FC3eACA5",
-  "factoryAddress": "0xf4e77E5Da47AC3125140c470c71cBca77B5c638c",
-  "usdc": "0x500D1d6A4c7D8Ae28240b47c8FCde034D827fD5e",
+  "registryAddress": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+  "usdc": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
   "startBlock": 0
 }

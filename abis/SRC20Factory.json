@@ -7,7 +7,6 @@
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -28,24 +27,6 @@
       },
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "transferRules",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "roles",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "features",
-        "type": "address"
-      },
-      {
-        "indexed": false,
         "internalType": "string",
         "name": "name",
         "type": "string"
@@ -58,12 +39,6 @@
       },
       {
         "indexed": false,
-        "internalType": "uint8",
-        "name": "decimals",
-        "type": "uint8"
-      },
-      {
-        "indexed": false,
         "internalType": "uint256",
         "name": "maxTotalSupply",
         "type": "uint256"
@@ -73,8 +48,12 @@
     "type": "event"
   },
   {
-    "constant": false,
     "inputs": [
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      },
       {
         "internalType": "string",
         "name": "_name",
@@ -86,24 +65,14 @@
         "type": "string"
       },
       {
-        "internalType": "uint8",
-        "name": "_decimals",
-        "type": "uint8"
-      },
-      {
         "internalType": "uint256",
         "name": "_maxTotalSupply",
         "type": "uint256"
       },
       {
         "internalType": "bytes32",
-        "name": "_kyaHash",
+        "name": "_kyaCid",
         "type": "bytes32"
-      },
-      {
-        "internalType": "string",
-        "name": "_kyaUrl",
-        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -111,9 +80,14 @@
         "type": "uint256"
       },
       {
-        "internalType": "address[]",
-        "name": "_addressList",
-        "type": "address[]"
+        "internalType": "uint8",
+        "name": "_features",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "_minter",
+        "type": "address"
       }
     ],
     "name": "create",
@@ -124,8 +98,20 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "registry",
+    "outputs": [
+      {
+        "internalType": "contract SRC20Registry",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

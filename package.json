@@ -5,6 +5,7 @@
     "codegen": "yarn prepare && graph codegen",
     "build": "graph build",
     "prepare": "mustache ./config/${NETWORK:-local}.json ./subgraph.template.yaml > subgraph.yaml",
+    "dev": "yarn create:local ; yarn deploy:local",
     "create:local": "graph create --node http://localhost:8120/ my-swarm/issuance",
     "create:kovan": "graph create --node http://localhost:8220/ my-swarm/issuance",
     "create:mainnet": "graph create --node http://localhost:8320/ my-swarm/issuance",

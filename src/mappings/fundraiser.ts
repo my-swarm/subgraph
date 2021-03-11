@@ -81,6 +81,7 @@ export function handleFundraiserSetup(event: FundraiserSetup): void {
   let token = Token.load(fundraiser.token);
   fundraiser.search = fundraiser.label + ' ' + token.name + ' ' + token.symbol + ' ' + fundraiser.id + ' ' + token.id;
   fundraiser.save();
+  token.currentFundraiser = fundraiserId;
 }
 
 export function handleFundraiserFinished(event: FundraiserFinished): void {

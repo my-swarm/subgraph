@@ -16,6 +16,7 @@ export function handleFeaturesUpdated(event: FeaturesUpdated): void {
   features.tokenFreeze = params.tokenFreeze;
   features.accountFreeze = params.accountFreeze;
   features.accountBurn = params.accountBurn;
+  features.transferRules = params.transferRules;
 
   features.save();
 }

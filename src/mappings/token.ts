@@ -1,17 +1,7 @@
-import { BigInt } from "@graphprotocol/graph-ts"
-import { Transfer as TransferEvent, FundraiserAdded } from '../../generated/templates/Token/SRC20';
+import { Transfer as TransferEvent } from '../../generated/templates/Token/SRC20';
 import { Token, TokenHolder, Transfer } from '../../generated/schema';
-import {Address} from "@graphprotocol/graph-ts/index";
-import { Fundraiser as FundraiserTemplate } from '../../generated/templates';
-
-/*
-export function handleSRC20SupplyMinted(event: SRC20SupplyMinted): void {
-  let id = event.params.src20.toHex();
-  let token = Token.load(id);
-  token.supply = token.supply.plus(event.params.src20Amount);
-  token.stake = token.stake.plus(event.params.swmAmount);
-}
- */
+import { log } from "@graphprotocol/graph-ts/index";
+import { KyaUpdated, NavUpdated, SupplyMinted, SupplyBurned } from "../../generated/templates/Token/SRC20";
 
 export function handleTransfer(event: TransferEvent): void {
   let address = event.address;
@@ -63,12 +53,31 @@ export function handleTransfer(event: TransferEvent): void {
   token.save();
 }
 
-export function handleFundraiserAdded(event: FundraiserAdded): void {
+export function handleNavUpdated(event: NavUpdated): void {
   let params = event.params;
-  let address = event.address;
-  FundraiserTemplate.create(params.fundraiser as Address);
-  let token = Token.load(address.toHex());
-  token.currentFundraiser = params.fundraiser.toHex();
+  let token = Token.load(event.address.toHex());
+  token.nav = params.nav.toI32();
   token.save();
+}
 
+export function handleKyaUpdated(event: KyaUpdated): void {
+  let params = event.params;
+  let token = Token.load(event.address.toHex());
+  token.kyaUri = params.kyaUri;
+  token.save();
+}
+
+export function handleSupplyMinted(event: SupplyMinted): void {
+  let params = event.params;
+  let token = Token.load(event.address.toHex());
+
+  token.supply = token.supply.plus(params.amount);
+  token.save();
+}
+
+export function handleSupplyBurned(event: SupplyBurned): void {
+  let params = event.params;
+  let token = Token.load(event.address.toHex());
+  token.supply = token.supply.minus(params.amount);
+  token.save();
 }

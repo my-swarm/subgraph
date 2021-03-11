@@ -3,11 +3,15 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_swmERC20",
+        "name": "_treasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_rewardPool",
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -17,24 +21,17 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "account",
+        "name": "treasury",
         "type": "address"
-      }
-    ],
-    "name": "FactoryAdded",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+      },
       {
         "indexed": false,
         "internalType": "address",
-        "name": "account",
+        "name": "rewardPool",
         "type": "address"
       }
     ],
-    "name": "FactoryRemoved",
+    "name": "Deployed",
     "type": "event"
   },
   {
@@ -88,13 +85,26 @@
       {
         "indexed": false,
         "internalType": "address",
+        "name": "rewardPool",
+        "type": "address"
+      }
+    ],
+    "name": "RewardPoolUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
         "name": "token",
         "type": "address"
       },
       {
         "indexed": false,
         "internalType": "address",
-        "name": "tokenOwner",
+        "name": "minter",
         "type": "address"
       }
     ],
@@ -111,7 +121,7 @@
         "type": "address"
       }
     ],
-    "name": "SRC20Removed",
+    "name": "SRC20Unregistered",
     "type": "event"
   },
   {
@@ -120,85 +130,14 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "src20",
+        "name": "treasury",
         "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "swmAccount",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "swmAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "src20Amount",
-        "type": "uint256"
       }
     ],
-    "name": "SRC20SupplyDecreased",
+    "name": "TreasuryUpdated",
     "type": "event"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "src20",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "swmAccount",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "swmAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "src20Amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "SRC20SupplyIncreased",
-    "type": "event"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_account",
-        "type": "address"
-      }
-    ],
-    "name": "addFactory",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -214,38 +153,48 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_src20",
+        "name": "",
         "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_src20Amount",
-        "type": "uint256"
       }
     ],
-    "name": "computeStake",
+    "name": "authorizedFactories",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "bool",
         "name": "",
-        "type": "uint256"
+        "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "authorizedMinters",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -261,30 +210,23 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_src20",
+        "name": "",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_swmAccount",
+        "name": "",
         "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_src20Amount",
-        "type": "uint256"
       }
     ],
-    "name": "decreaseSupply",
+    "name": "fundraise",
     "outputs": [
       {
         "internalType": "bool",
@@ -292,16 +234,14 @@
         "type": "bool"
       }
     ],
-    "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_src20",
+        "name": "_token",
         "type": "address"
       }
     ],
@@ -313,199 +253,10 @@
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_token",
-        "type": "address"
-      }
-    ],
-    "name": "getRoles",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_token",
-        "type": "address"
-      }
-    ],
-    "name": "getStake",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_token",
-        "type": "address"
-      }
-    ],
-    "name": "getTokenOwner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_account",
-        "type": "address"
-      }
-    ],
-    "name": "hasFactory",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_minter",
-        "type": "address"
-      }
-    ],
-    "name": "hasMinter",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_src20",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_swmAccount",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_src20Amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "increaseSupply",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "isOwner",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_src20",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_swmAccount",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_swmAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_src20Amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "mintSupply",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
     "inputs": [],
     "name": "owner",
     "outputs": [
@@ -515,26 +266,14 @@
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
         "name": "_token",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_roles",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_tokenOwner",
         "type": "address"
       },
       {
@@ -543,7 +282,7 @@
         "type": "address"
       }
     ],
-    "name": "put",
+    "name": "register",
     "outputs": [
       {
         "internalType": "bool",
@@ -551,20 +290,23 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
+      {
+        "internalType": "address",
+        "name": "_registrant",
+        "type": "address"
+      },
       {
         "internalType": "address",
         "name": "_token",
         "type": "address"
       }
     ],
-    "name": "remove",
+    "name": "registerFundraise",
     "outputs": [
       {
         "internalType": "bool",
@@ -572,33 +314,34 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_account",
+        "name": "",
         "type": "address"
       }
     ],
-    "name": "removeFactory",
+    "name": "registry",
     "outputs": [
       {
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
-        "name": "",
+        "name": "isRegistered",
         "type": "bool"
       }
     ],
-    "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -614,68 +357,30 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_src20",
-        "type": "address"
-      }
-    ],
-    "name": "renounceManagement",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_src20",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_newManager",
-        "type": "address"
-      }
-    ],
-    "name": "transferManagement",
+    "inputs": [],
+    "name": "rewardPool",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "address",
         "name": "",
-        "type": "bool"
+        "type": "address"
       }
     ],
-    "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -685,7 +390,76 @@
     ],
     "name": "transferOwnership",
     "outputs": [],
-    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "treasury",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_token",
+        "type": "address"
+      }
+    ],
+    "name": "unregister",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_rewardPool",
+        "type": "address"
+      }
+    ],
+    "name": "updateRewardPool",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_treasury",
+        "type": "address"
+      }
+    ],
+    "name": "updateTreasury",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   }

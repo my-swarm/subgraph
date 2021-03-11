@@ -1,3 +1,21 @@
+type Registry @entity {
+  id: ID!
+  address: Bytes!
+  treasury: Bytes!
+  rewardPool: Bytes!
+  numTokens: Int!
+  numTokensActive: Int!
+  numTokensFundraising: Int!
+  minters: [Minter!]! @derivedFrom(field: "registry")
+}
+
+type Minter @entity {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+  registry: Registry!
+}
+
 type Token @entity {
   id: ID!
   owner: Bytes!
@@ -8,10 +26,9 @@ type Token @entity {
   supply: BigInt! # currently minted (i.e. staked for)
   maxSupply: BigInt! # maximum that can be minted
   availableSupply: BigInt! # ~ token owner balance
-  stake: BigInt!
+  fee: BigInt!
   nav: Int
-  kyaHash: Bytes
-  kyaUrl: String
+  kyaUri: String
 
   isFrozen: Boolean!
   isFrozenBy: Bytes
@@ -26,7 +43,6 @@ type Token @entity {
   currentFundraiser: Fundraiser
   transferRules: TransferRules
   features: Features
-  roles: Roles
 }
 
 type Erc20Token @entity {
@@ -67,12 +83,7 @@ type Features @entity {
   tokenFreeze: Boolean!
   accountFreeze: Boolean!
   accountBurn: Boolean!
-}
-
-type Roles @entity {
-  id: ID!
-  address: Bytes
-  token: Token!
+  transferRules: Boolean!
 }
 
 enum TransferRequestStatus {
