@@ -1,0 +1,270 @@
+{
+  "data": {
+    "token": {
+      "address": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+      "availableSupply": "478000000000000000000000",
+      "currentFundraiser": null,
+      "decimals": 18,
+      "features": {
+        "address": "0xc2ac82860fa561d3bebe07e1f5ae9d9e624be835"
+      },
+      "fee": "1000000000000000000",
+      "fundraisers": [],
+      "greylist": [
+        {
+          "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0x14dc79964da2c08b23698b3d3cc7ca32193d9955"
+        },
+        {
+          "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+        },
+        {
+          "address": "0x71be63f3384f5fb98995898a86b02fb2426c5788",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0x71be63f3384f5fb98995898a86b02fb2426c5788"
+        },
+        {
+          "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0x976ea74026e726554db657fa54763abd0c3a0aa9"
+        },
+        {
+          "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+        },
+        {
+          "address": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0xa0ee7a142d267c1f36714e4a8f75612f20a79720"
+        },
+        {
+          "address": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_0xbcd4042de499d14e55001ccbb24a551f3b954096"
+        }
+      ],
+      "holders": [
+        {
+          "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "balance": "4000000000000000000000",
+          "id": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "balance": "5000000000000000000000",
+          "id": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f",
+          "balance": "5000000000000000000000",
+          "id": "0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "balance": "478000000000000000000000",
+          "id": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0x71be63f3384f5fb98995898a86b02fb2426c5788",
+          "balance": "1000000000000000000000",
+          "id": "0x71be63f3384f5fb98995898a86b02fb2426c5788_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "balance": "3000000000000000000000",
+          "id": "0x976ea74026e726554db657fa54763abd0c3a0aa9_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "balance": "2000000000000000000000",
+          "id": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
+          "balance": "1000000000000000000000",
+          "id": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        },
+        {
+          "address": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "balance": "1000000000000000000000",
+          "id": "0xbcd4042de499d14e55001ccbb24a551f3b954096_0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+          "isFrozen": false
+        }
+      ],
+      "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c",
+      "isFrozen": false,
+      "isFrozenBy": null,
+      "kyaUri": "ipfs:QmWZzX6BgD878piQM9mCse8MfAFLmb6q1K1g3QGW9SFGuj",
+      "maxSupply": "1000000000000000000000000",
+      "nav": 1000,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "supply": "500000000000000000000000",
+      "symbol": "TT3",
+      "transferRequests": [
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_1",
+          "requestId": 1,
+          "status": "Pending",
+          "to": {
+            "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+          },
+          "toAddress": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "value": "200000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_2",
+          "requestId": 2,
+          "status": "Approved",
+          "to": {
+            "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9"
+          },
+          "toAddress": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "value": "300000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_3",
+          "requestId": 3,
+          "status": "Denied",
+          "to": {
+            "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955"
+          },
+          "toAddress": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "value": "400000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_4",
+          "requestId": 4,
+          "status": "Pending",
+          "to": {
+            "address": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720"
+          },
+          "toAddress": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
+          "value": "500000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_5",
+          "requestId": 5,
+          "status": "Pending",
+          "to": {
+            "address": "0xbcd4042de499d14e55001ccbb24a551f3b954096"
+          },
+          "toAddress": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "value": "500000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_6",
+          "requestId": 6,
+          "status": "Pending",
+          "to": {
+            "address": "0xbcd4042de499d14e55001ccbb24a551f3b954096"
+          },
+          "toAddress": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "value": "100000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x90118d110b07abb82ba8980d1c5cc96eea810d2c_7",
+          "requestId": 7,
+          "status": "Pending",
+          "to": {
+            "address": "0x71be63f3384f5fb98995898a86b02fb2426c5788"
+          },
+          "toAddress": "0x71be63f3384f5fb98995898a86b02fb2426c5788",
+          "value": "500000000000000000000"
+        }
+      ],
+      "transferRules": {
+        "address": "0x16f57a4fb463cfc280c6e24a2310683725b4167b"
+      },
+      "transfers": [
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-0",
+          "toAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "value": "5000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-1",
+          "toAddress": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "value": "2000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-2",
+          "toAddress": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "value": "3000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-3",
+          "toAddress": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "value": "4000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-4",
+          "toAddress": "0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f",
+          "value": "5000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-5",
+          "toAddress": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
+          "value": "1000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-6",
+          "toAddress": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "value": "1000000000000000000000"
+        },
+        {
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0x40f26d85463d5c3bd03a49fdaa12d03e435da32786b37c642aea4e100100b534-7",
+          "toAddress": "0x71be63f3384f5fb98995898a86b02fb2426c5788",
+          "value": "1000000000000000000000"
+        },
+        {
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0xb5648b44406cffbb3992831a7625980fbe35b2a452ca306baa0929aa9f568130-1",
+          "toAddress": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "value": "300000000000000000000"
+        }
+      ],
+      "whitelist": []
+    }
+  }
+}

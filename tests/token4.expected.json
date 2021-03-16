@@ -1,0 +1,38 @@
+{
+  "data": {
+    "token": {
+      "address": "0xafe1b5bdebd4ae65af2024738bf0735fbb65d44b",
+      "availableSupply": "0",
+      "currentFundraiser": {
+        "address": "0x2fc631e4b3018258759c52af169200213e84abab",
+        "id": "0x2fc631e4b3018258759c52af169200213e84abab"
+      },
+      "decimals": 18,
+      "features": {
+        "address": "0x1ba420b66a21e3253ac435799c5cde24ff20006b"
+      },
+      "fee": "0",
+      "fundraisers": [
+        {
+          "address": "0x2fc631e4b3018258759c52af169200213e84abab",
+          "id": "0x2fc631e4b3018258759c52af169200213e84abab"
+        }
+      ],
+      "greylist": [],
+      "holders": [],
+      "id": "0xafe1b5bdebd4ae65af2024738bf0735fbb65d44b",
+      "kyaUri": "ipfs:QmWZzX6BgD878piQM9mCse8MfAFLmb6q1K1g3QGW9SFGuj",
+      "maxSupply": "1000000000000000000000000",
+      "nav": 1000,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "supply": "0",
+      "symbol": "TT4",
+      "transferRequests": [],
+      "transferRules": {
+        "address": "0x0000000000000000000000000000000000000000"
+      },
+      "transfers": [],
+      "whitelist": []
+    }
+  }
+}

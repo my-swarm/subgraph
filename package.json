@@ -6,6 +6,7 @@
     "build": "graph build",
     "prepare": "mustache ./config/${NETWORK:-local}.json ./subgraph.template.yaml > subgraph.yaml",
     "dev": "yarn create:local ; yarn deploy:local",
+    "test": "(cd tests && ts-node run.ts)",
     "create:local": "graph create --node http://localhost:8120/ my-swarm/issuance",
     "create:kovan": "graph create --node http://localhost:8220/ my-swarm/issuance",
     "create:mainnet": "graph create --node http://localhost:8320/ my-swarm/issuance",
@@ -20,6 +21,10 @@
     "@graphprotocol/graph-ts": "0.18.0"
   },
   "devDependencies": {
-    "mustache": "^4.0.1"
+    "diff": "^5.0.0",
+    "fast-json-stable-stringify": "^2.1.0",
+    "graphql": "^15.5.0",
+    "mustache": "^4.0.1",
+    "node-fetch": "^2.6.1"
   }
 }

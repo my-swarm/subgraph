@@ -1,0 +1,67 @@
+# 1. supply 1min, minted 500k, deployed with all features
+# 2. bulkTransfer to [0]..[7]
+# 3. greylisted all except [4]
+# 4. transfer from [0]: 200 to [1], 3oo to [2], 400 to [3], 500 to [5], 600 to [6], 500 to [7]
+# 5. approve transfer 2, deny transfer 3
+query {
+  token(id:"0x90118d110b07abb82ba8980d1c5cc96eea810d2c") {
+    id
+    owner
+    address
+    symbol
+    decimals
+    supply
+    maxSupply
+    availableSupply
+    fee
+    nav
+    kyaUri
+    isFrozen
+    isFrozenBy
+    whitelist { id }
+    greylist {
+      id
+      address
+    }
+    holders {
+      id
+      address
+      balance
+      isFrozen
+    }
+    transferRequests {
+      id
+      requestId
+      from {
+        address
+      }
+      fromAddress
+      to {
+        address
+      }
+      toAddress
+      value
+      status
+    }
+    transfers {
+      id
+      fromAddress
+      toAddress
+      value
+    }
+    fundraisers {
+      id
+      address
+    }
+    currentFundraiser {
+      id
+      address
+    }
+    transferRules {
+      address
+    }
+    features {
+      address
+    }
+  }
+}

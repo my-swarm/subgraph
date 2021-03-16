@@ -6,12 +6,20 @@ import { KyaUpdated, NavUpdated, SupplyMinted, SupplyBurned } from "../../genera
 export function handleTransfer(event: TransferEvent): void {
   let address = event.address;
   let params = event.params;
-  let idFrom = params.from.toHex() + '_' + address.toHex();
-  let idTo = params.to.toHex() + '_' + address.toHex();
+  let fromAddress = params.from;
+  let toAddress = params.to;
+  let idFrom = fromAddress.toHex() + '_' + address.toHex();
+  let idTo = toAddress.toHex() + '_' + address.toHex();
   let holderFrom = TokenHolder.load(idFrom);
   let holderTo = TokenHolder.load(idTo);
   let token = Token.load(address.toHex());
+  let transferRules = token.transferRules;
 
+  if (fromAddress.toHex() == transferRules || toAddress.toHex() == transferRules) {
+    // we don't count temporary transfers transferRules contract (create on transfer request)
+    return;
+  }
+  
   if (holderFrom) {
     holderFrom.balance = holderFrom.balance.minus(params.value);
     holderFrom.save();
@@ -20,7 +28,7 @@ export function handleTransfer(event: TransferEvent): void {
   if (holderTo == null) {
     holderTo = new TokenHolder(idTo);
     holderTo.token = token.id;
-    holderTo.address = params.to;
+    holderTo.address = toAddress;
     holderTo.balance = params.value;
     holderTo.createdAt = event.block.timestamp.toI32();
     holderTo.isFrozen = false;
@@ -36,18 +44,18 @@ export function handleTransfer(event: TransferEvent): void {
     let transfer = new Transfer(transferId);
     transfer.token = token.id;
     transfer.from = idFrom;
-    transfer.fromAddress = params.from;
+    transfer.fromAddress = fromAddress;
     transfer.to = idTo;
-    transfer.toAddress = params.to;
+    transfer.toAddress = toAddress;
     transfer.value = params.value;
     transfer.createdAt = event.block.timestamp.toI32();
     transfer.save();
   }
 
   // track available supply
-  if (token.owner == params.from) {
+  if (token.owner == fromAddress) {
     token.availableSupply = token.availableSupply.minus(params.value);
-  } else if (token.owner == params.to) {
+  } else if (token.owner == toAddress) {
     token.availableSupply = token.availableSupply.plus(params.value);
   }
   token.save();
@@ -64,20 +72,5 @@ export function handleKyaUpdated(event: KyaUpdated): void {
   let params = event.params;
   let token = Token.load(event.address.toHex());
   token.kyaUri = params.kyaUri;
-  token.save();
-}
-
-export function handleSupplyMinted(event: SupplyMinted): void {
-  let params = event.params;
-  let token = Token.load(event.address.toHex());
-
-  token.supply = token.supply.plus(params.amount);
-  token.save();
-}
-
-export function handleSupplyBurned(event: SupplyBurned): void {
-  let params = event.params;
-  let token = Token.load(event.address.toHex());
-  token.supply = token.supply.minus(params.amount);
   token.save();
 }

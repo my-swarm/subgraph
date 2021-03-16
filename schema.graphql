@@ -14,6 +14,9 @@ type Minter @entity {
   address: Bytes!
   createdAt: BigInt!
   registry: Registry!
+  feeTotal: BigInt!
+  feeTreasury: BigInt!
+  feeRewardPool: BigInt!
 }
 
 type Token @entity {
@@ -43,6 +46,14 @@ type Token @entity {
   currentFundraiser: Fundraiser
   transferRules: TransferRules
   features: Features
+}
+
+type Fee @entity {
+  id: ID!
+  token: Token
+  total: BigInt!
+  treasury: BigInt!
+  rewardPool: BigInt!
 }
 
 type Erc20Token @entity {
@@ -97,7 +108,9 @@ type TransferRequest @entity {
   token: Token!
   requestId: Int!
   from: TokenHolder!
+  fromAddress: Bytes!
   to: TokenHolder!
+  toAddress: Bytes!
   value: BigInt!
   status: TransferRequestStatus!
   createdAt: Int!
@@ -146,7 +159,6 @@ type Fundraiser @entity {
   softCap: BigInt!
   hardCap: BigInt!
   supply: BigInt! # aka tokensToMint
-  # from setup
   baseCurrency: Erc20Token!
   tokenPrice: BigInt!
   affiliateManager: AffiliateManager

@@ -1,0 +1,65 @@
+query {
+  token(id:"0x000") {
+    id
+    owner
+    address
+    symbol
+    decimals
+    supply
+    maxSupply
+    availableSupply
+    fee
+    nav
+    kyaUri
+    isFrozen
+    isFrozenBy
+    whitelist {
+      id
+      address
+    }
+    holders {
+      id
+      address
+      balance
+      isFrozen
+    }
+    transferRequests {
+      id
+      requestId
+      from {
+        address
+      }
+      to {
+        address
+      }
+      value
+      status
+    }
+    transfers {
+      id
+      from {
+        address
+      }
+      fromAddress
+      to {
+        address
+      }
+      toAddress
+      value
+    }
+    fundraisers {
+      id
+      address
+    }
+    currentFundraiser {
+      id
+      address
+    }
+    transferRules {
+      address
+    }
+    features {
+      address
+    }
+  }
+}

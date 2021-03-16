@@ -1,0 +1,364 @@
+{
+  "data": {
+    "fundraiser": {
+      "address": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0",
+      "affiliateManager": {
+        "address": "0x438c28a99deb2c2539aea1f0571499655e1e4755"
+      },
+      "affiliates": [],
+      "amountPending": "0",
+      "amountQualified": "8000000000",
+      "amountRefunded": "0",
+      "amountWithdrawn": "0",
+      "baseCurrency": {
+        "address": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "decimals": 6,
+        "id": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "name": "Mock USDC",
+        "symbol": "USDC"
+      },
+      "contributionsLocked": false,
+      "contributorRestrictions": "0xdd46b07866802c95861624eb3a48aad922c98a55",
+      "contributors": [
+        {
+          "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x41b57db990d179e7903be47ad3749dd0519ec25f52d71e973de16577f1408a8b-0",
+              "timestamp": 1617351597,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xcae2c496fbe4ee727914d90f555448337ace58edb99233d1991e5128ec8b0acb-2",
+              "timestamp": 1617351569,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x1c990b3996bc5016321b96eef8620dc03214e6203812441237cbb436ed4a2839-0",
+              "timestamp": 1617351594,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0x316db921d9108cde3da86354590d45b5610cd250672c4e3391a0b5d4d1e222f3-2",
+              "timestamp": 1617351563,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x1cbd3b2770909d4e10f157cabc84c7264073c9ec",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x2acef729f399f7cb79591815dd98ff506fae2782aa0e0949d7e3b1531681cc0a-2",
+              "timestamp": 1617351581,
+              "type": "Pending"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xaa7dea3bd4a3715d5cbfbce39d5d463b9a16f0adabf2a4a00acb40803c88be1a-0",
+              "timestamp": 1617351603,
+              "type": "Qualified"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x1cbd3b2770909d4e10f157cabc84c7264073c9ec",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x82778e98ec42fc3fcd16dc2beeb7bcf20ed6eb4857b786d5987173b2417510d0-0",
+              "timestamp": 1617351598,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xf46ddea6a2c50744ee65adb4ecffad9be5fa920555d38c9a9922bd4a3e1ce413-2",
+              "timestamp": 1617351571,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x2546bcd3c84621e976d8185a91a922ae77ecec30",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x548ebf1438b58d156df1d9d4e4295b2d1fcd09eb0a0cec70a2a48eb7920d5881-0",
+              "timestamp": 1617351606,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xada372766f1a6da05148deee80a850224590f7125cd4fe3134bab4b41bc46521-2",
+              "timestamp": 1617351587,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x2546bcd3c84621e976d8185a91a922ae77ecec30",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x71be63f3384f5fb98995898a86b02fb2426c5788",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x095f7843de892d5ccd58e33f135771218bfac03da4648ce2183e28a030ec6aac-0",
+              "timestamp": 1617351601,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xd34a6c415e0a65fb9285c924737b9d9d2e22745da3702c35bdaccd2a6b5165dc-2",
+              "timestamp": 1617351577,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x71be63f3384f5fb98995898a86b02fb2426c5788",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0xce22b9fada18349da939f00875c88d68119d3308dfc0134c6e69f4184604071e-0",
+              "timestamp": 1617351609,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xda2c9853489b9eede7b3eedbe1c2298756ae0a9fe3b46c70750ea467cb0aa3ee-2",
+              "timestamp": 1617351593,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x7719664e85e04aaf5981049e7393f22c4d803035ae967c5d3de386e13a094b91-0",
+              "timestamp": 1617351596,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0x93b48c4e1686f0e8cd23e10f38bc7c081044c854bf9c5e950893f79b7909a296-2",
+              "timestamp": 1617351567,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "status": "Qualified"
+        },
+        {
+          "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x589f9dbcf292dffced1b6b9f828047d45789b80d0cd538f68e167c3efbe0591e-0",
+              "timestamp": 1617351595,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0x5a910b467031d5416cd1251bbf6c801d22271f6e5a094c32bdd007334f72491d-2",
+              "timestamp": 1617351565,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x64c4bb5e35aabc2c88a00c9f29415c3b6caa611d3db39858573ddc128540d8c3-0",
+              "timestamp": 1617351599,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xc0e42747158049a133ca3a18e1e69f22be30786cc7c6b6425f60a75d98caa293-2",
+              "timestamp": 1617351573,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x537c9d7081b5834f876488c7abe1c4d070c7d0c870adc000d520e17c5bfad0ca-0",
+              "timestamp": 1617351600,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0x629317e33db82c0188643474d16a3596c836bd6ec8e4ddfcdd716fe180c808cb-2",
+              "timestamp": 1617351575,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xbcd4042de499d14e55001ccbb24a551f3b954096",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xbda5747bfd65f08deb54cb465eb87d40e51b197e",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x250b745d78f2e35d0b7d708043e5725ed20a30540fba17206c5a0fe5dbdf1eb2-2",
+              "timestamp": 1617351589,
+              "type": "Pending"
+            },
+            {
+              "amount": "500000000",
+              "id": "0x29ce50d1a5f3e3ab97cfca55648c797e02c7a5c17415820d1ed600b659dce15c-0",
+              "timestamp": 1617351607,
+              "type": "Qualified"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xbda5747bfd65f08deb54cb465eb87d40e51b197e",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xcd3b766ccdd6ae721141f452c550ca635964ce71",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0xab7f264639064372cd14547fe89709a23f3f14481a3cf14d7929b329056b2142-0",
+              "timestamp": 1617351605,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xb5be2bbff8057470117e76283043f685427f13c8b9d7593e660e7a677e679c8a-2",
+              "timestamp": 1617351585,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xcd3b766ccdd6ae721141f452c550ca635964ce71",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xdd2fd4581271e230360230f9337d5c0430bf44c0",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x02be4132f3fdcee5d07be6324c2f44dd61b1df97c126fd270350c2ab7b8516f4-2",
+              "timestamp": 1617351591,
+              "type": "Pending"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xc697869beeec0673606b5ae2c2b04744292c4439b8ed29db63c8d8242a0be827-0",
+              "timestamp": 1617351608,
+              "type": "Qualified"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xdd2fd4581271e230360230f9337d5c0430bf44c0",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xdf3e18d64bc6a983f673ab319ccae4f1a57c7097",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x04f19de5d992453ff94fc43a6fe73ccb9d26eb8247651b40bcdc84f8dbeaf245-0",
+              "timestamp": 1617351604,
+              "type": "Qualified"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xa2a1f58d07e8a853477d381e60ba3e5a009c8c199c6b3985478b05c63eba5296-2",
+              "timestamp": 1617351583,
+              "type": "Pending"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xdf3e18d64bc6a983f673ab319ccae4f1a57c7097",
+          "status": "Qualified"
+        },
+        {
+          "address": "0xfabb0ac9d68b0b445fb7357272ff202c5651694a",
+          "amount": "500000000",
+          "contributions": [
+            {
+              "amount": "500000000",
+              "id": "0x1da0bdc3b023662b59b2f2d009c6e8de8d3492815b8cf5748e73c135c8f71d0d-2",
+              "timestamp": 1617351579,
+              "type": "Pending"
+            },
+            {
+              "amount": "500000000",
+              "id": "0xbef4aab7422c41ca80271136df1bf55bc15a500c783a341d902660b01ff2266a-0",
+              "timestamp": 1617351602,
+              "type": "Qualified"
+            }
+          ],
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0_0xfabb0ac9d68b0b445fb7357272ff202c5651694a",
+          "status": "Qualified"
+        }
+      ],
+      "createdAt": 1617351561,
+      "endDate": 1618557444,
+      "fundraiserManager": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+      "hardCap": "9000000000",
+      "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0",
+      "label": "Testing Fundraiser",
+      "minter": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+      "numContributors": 16,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "search": "Testing Fundraiser Testing Token: Fundraised TT5 0x0afdacd509e73115ea1654b1a770f1a807e7c9c0 0x7290f72b5c67052dde8e6e179f7803c493e90d3f",
+      "softCap": "5000000000",
+      "startDate": 1617351561,
+      "status": "Running",
+      "supply": "100000000000000000000000",
+      "token": {
+        "id": "0x7290f72b5c67052dde8e6e179f7803c493e90d3f"
+      },
+      "tokenPrice": "0"
+    }
+  }
+}

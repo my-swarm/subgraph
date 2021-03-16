@@ -1,88 +1,14 @@
-import { BigInt, Address, store, log, ethereum } from "@graphprotocol/graph-ts"
+import {Address, BigInt} from "@graphprotocol/graph-ts"
 import {
-  Fundraiser as FundraiserContract,
-  FundraiserSetup,
-  ContributionPending,
   ContributionAdded,
-  PendingContributionAccepted,
+  ContributionPending,
   ContributorAccepted,
   ContributorRemoved,
+  FundraiserCanceled,
   FundraiserFinished,
-  FundraiserCanceled
+  PendingContributionAccepted
 } from '../../generated/templates/Fundraiser/Fundraiser';
-import { ERC20 as ERC20Contract } from '../../generated/templates/Fundraiser/ERC20';
-import { Fundraiser, Token, Contributor, Contribution, Erc20Token, AffiliateManager } from '../../generated/schema';
-import { AffiliateManager as AffiliateManagerTemplate } from '../../generated/templates';
-
-
-export function handleFundraiserSetup(event: FundraiserSetup): void {
-  let address = event.address;
-  let params = event.params;
-  let fundraiserId = address.toHex();
-  let fundraiser = new Fundraiser(fundraiserId);
-  let contract = FundraiserContract.bind(address);
-
-  let affiliateManagerId = params.affiliateManager.toHex();
-  if (affiliateManagerId != '0x0000000000000000000000000000000000000000') {
-    AffiliateManagerTemplate.create(params.affiliateManager as Address)
-    let affiliateManager = new AffiliateManager(affiliateManagerId);
-    affiliateManager.address = params.affiliateManager;
-    affiliateManager.fundraiser = fundraiserId;
-    affiliateManager.save();
-  } else {
-    affiliateManagerId = null;
-  }
-
-  fundraiser.owner = event.transaction.from;
-  fundraiser.address = address;
-
-  fundraiser.label = contract.label();
-  fundraiser.token = contract.token().toHex();
-  fundraiser.supply = contract.supply();
-  fundraiser.startDate = contract.startDate().toI32();
-  fundraiser.endDate = contract.endDate().toI32();
-  fundraiser.createdAt = event.block.timestamp.toI32();
-  fundraiser.softCap = contract.softCap();
-  fundraiser.hardCap = contract.hardCap();
-
-  let baseCurrencyId = params.baseCurrency.toHex();
-  let baseCurrency = Erc20Token.load(baseCurrencyId);
-  if (!baseCurrency) {
-    let baseCurrency = new Erc20Token(baseCurrencyId)
-    let erc20 = ERC20Contract.bind(params.baseCurrency);
-    let wrongBaseCurrency = erc20.try_name().reverted || erc20.try_symbol().reverted && erc20.try_decimals().reverted;
-    if (wrongBaseCurrency) {
-      // todo: this is not the best solution, should figure out something more generic
-      return;
-      // someone passed an incorrect base currency.
-    }
-    baseCurrency.address = params.baseCurrency;
-    baseCurrency.name = erc20.name();
-    baseCurrency.symbol = erc20.symbol();
-    baseCurrency.decimals = erc20.decimals();
-    baseCurrency.save();
-  }
-
-  fundraiser.baseCurrency = baseCurrencyId;
-
-  fundraiser.tokenPrice = params.tokenPrice;
-  fundraiser.affiliateManager = affiliateManagerId;
-  fundraiser.contributorRestrictions = params.contributorRestrictions;
-  fundraiser.fundraiserManager = params.fundraiserManager;
-  fundraiser.minter = params.minter;
-  fundraiser.contributionsLocked = params.contributionsLocked;
-
-  fundraiser.amountQualified = BigInt.fromI32(0);
-  fundraiser.amountPending = BigInt.fromI32(0);
-  fundraiser.amountRefunded = BigInt.fromI32(0);
-  fundraiser.amountWithdrawn = BigInt.fromI32(0);
-  fundraiser.status = 'Running';
-  fundraiser.numContributors = 0;
-  let token = Token.load(fundraiser.token);
-  fundraiser.search = fundraiser.label + ' ' + token.name + ' ' + token.symbol + ' ' + fundraiser.id + ' ' + token.id;
-  fundraiser.save();
-  token.currentFundraiser = fundraiserId;
-}
+import {Contribution, Contributor, Fundraiser} from '../../generated/schema';
 
 export function handleFundraiserFinished(event: FundraiserFinished): void {
   let fundraiser = Fundraiser.load(event.address.toHex());

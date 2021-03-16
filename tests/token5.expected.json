@@ -1,0 +1,38 @@
+{
+  "data": {
+    "token": {
+      "address": "0x7290f72b5c67052dde8e6e179f7803c493e90d3f",
+      "availableSupply": "0",
+      "currentFundraiser": {
+        "address": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0",
+        "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0"
+      },
+      "decimals": 18,
+      "features": {
+        "address": "0x0200444768937873b2525336092278acf0d917a1"
+      },
+      "fee": "0",
+      "fundraisers": [
+        {
+          "address": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0",
+          "id": "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0"
+        }
+      ],
+      "greylist": [],
+      "holders": [],
+      "id": "0x7290f72b5c67052dde8e6e179f7803c493e90d3f",
+      "kyaUri": "ipfs:QmWZzX6BgD878piQM9mCse8MfAFLmb6q1K1g3QGW9SFGuj",
+      "maxSupply": "1000000000000000000000000",
+      "nav": 1000,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "supply": "0",
+      "symbol": "TT5",
+      "transferRequests": [],
+      "transferRules": {
+        "address": "0x0000000000000000000000000000000000000000"
+      },
+      "transfers": [],
+      "whitelist": []
+    }
+  }
+}

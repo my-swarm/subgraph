@@ -8,7 +8,7 @@ import {
   TransferApproved,
   TransferDenied,
 } from '../../generated/templates/TransferRules/TransferRules';
-import { TransferRules, WhitelistedAccount, GreylistedAccount, TransferRequest } from '../../generated/schema';
+import {TransferRules, WhitelistedAccount, GreylistedAccount, TransferRequest, Transfer} from '../../generated/schema';
 
 export function handleWhitelisted(event: AccountWhitelisted): void {
   let params = event.params;
@@ -66,7 +66,9 @@ export function handleTransferRequested(event: TransferRequested): void {
   transferRequest.requestId = params.requestId.toI32();
   transferRequest.token = tokenId;
   transferRequest.from = params.from.toHex() + '_' + tokenId;
+  transferRequest.fromAddress = params.from;
   transferRequest.to = params.to.toHex() + '_' + tokenId;
+  transferRequest.toAddress = params.to;
   transferRequest.value = params.value;
   transferRequest.createdAt = event.block.timestamp.toI32();
   transferRequest.updatedAt = event.block.timestamp.toI32();
@@ -82,6 +84,19 @@ export function handleTransferApproved(event: TransferApproved): void {
   transferRequest.updatedAt = event.block.timestamp.toI32();
   transferRequest.status = 'Approved';
   transferRequest.save();
+
+  let fromAddress = transferRequest.fromAddress;
+  let toAddress = transferRequest.toAddress;
+  let transferId = event.transaction.hash.toHex() + "-" + event.logIndex.toString();
+  let transfer = new Transfer(transferId);
+  transfer.token = tokenId;
+  transfer.from = fromAddress.toHex() + '_' + tokenId;
+  transfer.fromAddress = fromAddress;
+  transfer.to = toAddress.toHex() + '_' + tokenId;
+  transfer.toAddress = toAddress;
+  transfer.value = params.value;
+  transfer.createdAt = event.block.timestamp.toI32();
+  transfer.save();
 }
 
 export function handleTransferDenied(event: TransferDenied): void {

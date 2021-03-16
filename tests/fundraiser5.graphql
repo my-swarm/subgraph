@@ -1,0 +1,55 @@
+query {
+  fundraiser(id: "0x0afdacd509e73115ea1654b1a770f1a807e7c9c0") {
+    id
+    address
+    owner
+    token { id }
+    label
+    startDate
+    endDate
+    createdAt
+    softCap
+    hardCap
+    supply
+    baseCurrency {
+      id
+      address
+      name
+      symbol
+      decimals
+    }
+    tokenPrice
+    affiliateManager { address }
+    contributorRestrictions
+    fundraiserManager
+    minter
+    contributionsLocked
+
+    amountQualified
+    amountPending
+    amountRefunded
+    amountWithdrawn
+    status
+    numContributors
+    contributors {
+      id
+      status
+      address
+      amount
+      contributions {
+        id
+        type
+        timestamp
+        amount
+      }
+    }
+    affiliates {
+      id
+      address
+      referral
+      percentage
+      affiliateManager { address }
+    }
+    search
+  }
+}

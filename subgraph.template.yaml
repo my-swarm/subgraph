@@ -23,10 +23,16 @@ dataSources:
           file: ./abis/SRC20.json
         - name: Features
           file: ./abis/Features.json
+        - name: Fundraiser
+          file: ./abis/Fundraiser.json
+        - name: ERC20
+          file: ./abis/ERC20.json
       entities:
         - Registry
         - Token
         - Features
+        - Fundraiser
+        - ERC20
       eventHandlers:
         - event: Deployed(address,address)
           handler: handleDeployed
@@ -42,8 +48,34 @@ dataSources:
           handler: handleSRC20Registered
         - event: SRC20Unregistered(address)
           handler: handleSRC20Unregistered
+        - event: FundraiserRegistered(address,address,address)
+          handler: handleFundraiserRegistered
 
 templates:
+  - name: Minter
+    network: {{network}}
+    kind: ethereum/contract
+    source:
+      abi: Minter
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: './src/mappings/minter.ts'
+      abis:
+        - name: Minter
+          file: ./abis/TokenMinter.json
+      entities:
+        - Token
+        - Minter
+      eventHandlers:
+        - event: Minted(address,uint256,uint256,address)
+          handler: handleMinted
+        - event: Burned(address,uint256,address)
+          handler: handleBurned
+        - event: FeeApplied(address,uint256,uint256)
+          handler: handleFeeApplied
+
   - name: Token
     network: {{network}}
     kind: ethereum/contract
@@ -64,15 +96,10 @@ templates:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-        # new ones
         - event: NavUpdated(uint256)
           handler: handleNavUpdated
         - event: KyaUpdated(string)
           handler: handleKyaUpdated
-        - event: SupplyMinted(uint256,address)
-          handler: handleSupplyMinted
-        - event: SupplyBurned(uint256,address)
-          handler: handleSupplyBurned
 
   - name: TransferRules
     network: {{network}}
@@ -151,14 +178,9 @@ templates:
       abis:
         - name: Fundraiser
           file: ./abis/Fundraiser.json
-        - name: ERC20
-          file: ./abis/ERC20.json
       entities:
         - Fundraiser
-        - ERC20
       eventHandlers:
-        - event: FundraiserSetup(address,uint256,address,address,address,address,bool)
-          handler: handleFundraiserSetup
         - event: FundraiserFinished()
           handler: handleFundraiserFinished
         - event: FundraiserCanceled()

@@ -1,0 +1,5 @@
+query {
+  registries {
+    address
+  }
+}

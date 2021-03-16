@@ -1,0 +1,34 @@
+query {
+  token(id:"0xafe1b5bdebd4ae65af2024738bf0735fbb65d44b") {
+    id
+    owner
+    address
+    symbol
+    decimals
+    supply
+    maxSupply
+    availableSupply
+    fee
+    nav
+    kyaUri
+    whitelist { id }
+    greylist { id }
+    holders { id }
+    transferRequests { id }
+    transfers { id }
+    fundraisers {
+      id
+      address
+    }
+    currentFundraiser {
+      id
+      address
+    }
+    transferRules {
+      address
+    }
+    features {
+      address
+    }
+  }
+}

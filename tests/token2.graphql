@@ -1,0 +1,65 @@
+# 0. supply 1min, minted 500k
+# 1. deployed with all features
+# 2. batch whitelist [0]..[4]
+# 3. unwhitelist [2], [4]
+# 4. whitelist [2]
+# 5. distribute 1000 to [0]..[4]
+# 6. transfer [0]->[1]: 200, [0]->[]: 300, [1]->[2] 100
+query {
+  token(id:"0x71c95911e9a5d330f4d621842ec243ee1343292e") {
+    id
+    owner
+    address
+    symbol
+    decimals
+    supply
+    maxSupply
+    availableSupply
+    fee
+    nav
+    kyaUri
+    isFrozen
+    isFrozenBy
+    whitelist {
+      id
+      address
+    }
+    greylist { id }
+    holders {
+      id
+      address
+      balance
+      isFrozen
+    }
+    transferRequests {
+      id
+      requestId
+      from {
+        address
+      }
+      fromAddress
+      to {
+        address
+      }
+      toAddress
+      value
+      status
+    }
+    transfers {
+      id
+      from {
+        address
+      }
+      fromAddress
+      to {
+        address
+      }
+      toAddress
+      value
+    }
+    fundraisers { id }
+    currentFundraiser { id }
+    transferRules { address }
+    features { address }
+  }
+}

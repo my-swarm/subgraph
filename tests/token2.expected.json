@@ -1,0 +1,165 @@
+{
+  "data": {
+    "token": {
+      "address": "0x71c95911e9a5d330f4d621842ec243ee1343292e",
+      "availableSupply": "496000000000000000000000",
+      "currentFundraiser": null,
+      "decimals": 18,
+      "features": {
+        "address": "0x127ac224013f1918823affeb7053b867c496527f"
+      },
+      "fee": "1000000000000000000",
+      "fundraisers": [],
+      "greylist": [],
+      "holders": [
+        {
+          "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "balance": "1000000000000000000000",
+          "id": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955_0x71c95911e9a5d330f4d621842ec243ee1343292e",
+          "isFrozen": false
+        },
+        {
+          "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "balance": "500000000000000000000",
+          "id": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65_0x71c95911e9a5d330f4d621842ec243ee1343292e",
+          "isFrozen": false
+        },
+        {
+          "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "balance": "496000000000000000000000",
+          "id": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8_0x71c95911e9a5d330f4d621842ec243ee1343292e",
+          "isFrozen": false
+        },
+        {
+          "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "balance": "1400000000000000000000",
+          "id": "0x976ea74026e726554db657fa54763abd0c3a0aa9_0x71c95911e9a5d330f4d621842ec243ee1343292e",
+          "isFrozen": false
+        },
+        {
+          "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "balance": "1100000000000000000000",
+          "id": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc_0x71c95911e9a5d330f4d621842ec243ee1343292e",
+          "isFrozen": false
+        }
+      ],
+      "id": "0x71c95911e9a5d330f4d621842ec243ee1343292e",
+      "isFrozen": false,
+      "isFrozenBy": null,
+      "kyaUri": "ipfs:QmWZzX6BgD878piQM9mCse8MfAFLmb6q1K1g3QGW9SFGuj",
+      "maxSupply": "1000000000000000000000000",
+      "nav": 1000,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "supply": "500000000000000000000000",
+      "symbol": "TT2",
+      "transferRequests": [],
+      "transferRules": {
+        "address": "0xb0c6421bde3e29683f5eed0361bf58589de95fc7"
+      },
+      "transfers": [
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x1c208aed2e9165745d44a4096c28c73dcc2703ac5a36a9719e70d4b39c8fe07c-0",
+          "to": {
+            "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9"
+          },
+          "toAddress": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "value": "300000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "fromAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x9ebcbd986bd49b554dc039204fa2ae7c169fc9a467e17d31a00abe4b968f2089-0",
+          "to": {
+            "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+          },
+          "toAddress": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "value": "200000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+          },
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0xa46b9e30b1b720e301404913141c491ddc7f3a34ae947fafa040f460b7965ec1-0",
+          "to": {
+            "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+          },
+          "toAddress": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "value": "1000000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+          },
+          "fromAddress": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "id": "0xad32c19b89af3b63d8f2b97172e2442d3fb824b367c44f1f4e3bd1354e03d1be-0",
+          "to": {
+            "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9"
+          },
+          "toAddress": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "value": "100000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+          },
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0xc716c8a6426b3cd65a96e59ba6ff90de9d6d30c0861c21c59f3bc8cfdc746135-0",
+          "to": {
+            "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9"
+          },
+          "toAddress": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "value": "1000000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+          },
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0xeb973ae2ded3590fc94fe77d1a1051c9da561f8ef70af369e0a2455fdc349069-0",
+          "to": {
+            "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+          },
+          "toAddress": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "value": "1000000000000000000000"
+        },
+        {
+          "from": {
+            "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+          },
+          "fromAddress": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "id": "0xf37c1e4dc9394197afa1c06a0190a3680fd983c98631608200894ef64150032c-0",
+          "to": {
+            "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955"
+          },
+          "toAddress": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "value": "1000000000000000000000"
+        }
+      ],
+      "whitelist": [
+        {
+          "address": "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
+          "id": "0x71c95911e9a5d330f4d621842ec243ee1343292e_0x14dc79964da2c08b23698b3d3cc7ca32193d9955"
+        },
+        {
+          "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "id": "0x71c95911e9a5d330f4d621842ec243ee1343292e_0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+        },
+        {
+          "address": "0x976ea74026e726554db657fa54763abd0c3a0aa9",
+          "id": "0x71c95911e9a5d330f4d621842ec243ee1343292e_0x976ea74026e726554db657fa54763abd0c3a0aa9"
+        },
+        {
+          "address": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
+          "id": "0x71c95911e9a5d330f4d621842ec243ee1343292e_0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+        }
+      ]
+    }
+  }
+}

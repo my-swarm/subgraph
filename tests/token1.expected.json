@@ -1,0 +1,31 @@
+{
+  "data": {
+    "token": {
+      "address": "0x8464135c8f25da09e49bc8782676a84730c318bc",
+      "availableSupply": "0",
+      "currentFundraiser": null,
+      "decimals": 18,
+      "features": {
+        "address": "0x8398bcd4f633c72939f9043db78c574a91c99c0a"
+      },
+      "fee": "0",
+      "fundraisers": [],
+      "holders": [],
+      "id": "0x8464135c8f25da09e49bc8782676a84730c318bc",
+      "isFrozen": false,
+      "isFrozenBy": null,
+      "kyaUri": "ipfs:QmWZzX6BgD878piQM9mCse8MfAFLmb6q1K1g3QGW9SFGuj",
+      "maxSupply": "1000000000000000000000000",
+      "nav": 1000,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "supply": "0",
+      "symbol": "TT1",
+      "transferRequests": [],
+      "transferRules": {
+        "address": "0x0000000000000000000000000000000000000000"
+      },
+      "transfers": [],
+      "whitelist": []
+    }
+  }
+}
