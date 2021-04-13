@@ -31,6 +31,7 @@ type Token @entity {
   availableSupply: BigInt! # ~ token owner balance
   fee: BigInt!
   nav: Int
+  navFeePaid: Int
   kyaUri: String
 
   isFrozen: Boolean!
@@ -189,6 +190,8 @@ type Affiliate @entity {
   id: ID!
   address: Bytes!
   referral: String!
+  amount: BigInt!
+  amountClaimed: BigInt!
   percentage: BigInt!
   affiliateManager: AffiliateManager!
   fundraiser: Fundraiser!
@@ -207,6 +210,7 @@ type Contributor @entity {
   status: ContributorStatus!
   address: Bytes!
   amount: BigInt!
+  amountClaimed: BigInt!
   contributions: [Contribution!] @derivedFrom(field: "contributor")
 }
 

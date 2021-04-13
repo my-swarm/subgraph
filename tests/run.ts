@@ -25,6 +25,8 @@ async function runTest(testName: string) {
     return true;
   } else {
     const diff = Diff.diffJson(expected, actual);
+    fs.writeFileSync(`${__dirname}/out/${testName}.actual.json`, JSON.stringify(actual, undefined, 2));
+    fs.writeFileSync(`${__dirname}/out/${testName}.expected.json`, JSON.stringify(expected, undefined, 2));
     for (const part of diff) {
       if (part.removed) {
         console.log(`Expected: ${part.value.trim()}`)

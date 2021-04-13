@@ -1,14 +1,18 @@
-import {Address, BigInt} from "@graphprotocol/graph-ts"
+import { Address, BigInt, log } from "@graphprotocol/graph-ts"
 import {
   ContributionAdded,
   ContributionPending,
+  ContributionRefunded,
   ContributorAccepted,
   ContributorRemoved,
   FundraiserCanceled,
   FundraiserFinished,
-  PendingContributionAccepted
+  PendingContributionAccepted,
+  TokensClaimed,
+  ReferralChanged,
+  ReferralClaimed
 } from '../../generated/templates/Fundraiser/Fundraiser';
-import {Contribution, Contributor, Fundraiser} from '../../generated/schema';
+import {Contribution, Contributor, Fundraiser, Affiliate} from '../../generated/schema';
 
 export function handleFundraiserFinished(event: FundraiserFinished): void {
   let fundraiser = Fundraiser.load(event.address.toHex());
@@ -18,7 +22,7 @@ export function handleFundraiserFinished(event: FundraiserFinished): void {
 
 export function handleFundraiserCanceled(event: FundraiserCanceled): void {
   let fundraiser = Fundraiser.load(event.address.toHex());
-  fundraiser.status = 'Finished';
+  fundraiser.status = 'Canceled';
   fundraiser.save();
 }
 
@@ -30,6 +34,9 @@ function createOrLoadContributor(fundraiserId: string, address: Address): Contri
     contributor.address = address;
     contributor.fundraiser = fundraiserId;
     contributor.amount = BigInt.fromI32(0);
+    contributor.amountClaimed = BigInt.fromI32(0);
+    // contributor.claimableAmount = BigInt.fromI32(0);
+    // contributor.referralAmount = BigInt.fromI32(0);
   }
   return contributor as Contributor; // cast from Contributor | NULL
 }
@@ -74,8 +81,8 @@ export function handleContributionAdded(event: ContributionAdded): void {
   fundraiser.save();
 
   let contributor = createOrLoadContributor(fundraiserId, params.account);
-  contributor.status = 'Qualified';
   contributor.amount = contributor.amount.plus(params.amount);
+  // contributor.claimableAmount = getClaimableAmount(fundraiser as Fundraiser, contributor.amount);
   contributor.save();
 
   saveContribution(
@@ -91,16 +98,33 @@ export function handleContributionAdded(event: ContributionAdded): void {
 // 2. investor is qualified
 // 3. in the process the contribution is added again as qualified
 export function handlePendingContributionAccepted(event: PendingContributionAccepted): void {
-  let address = event.address;
+  let fundraiserId = event.address.toHex();
   let params = event.params;
-  let fundraiser = Fundraiser.load(address.toHex());
+  let fundraiser = Fundraiser.load(fundraiserId);
   fundraiser.amountPending = fundraiser.amountPending.minus(params.amount);
   // amountQualified already increased, because ContributionAdded was triggered too
   fundraiser.save();
 
-  let contributor = Contributor.load(address.toHex() + '_' + params.account.toHex());
+  let contributor = Contributor.load(fundraiserId + '_' + params.account.toHex());
   contributor.amount = contributor.amount.minus(params.amount);
   contributor.save();
+}
+
+export function handleContributionRefunded(event: ContributionRefunded): void {
+  let fundraiserId = event.address.toHex();
+  let params = event.params;
+
+  let fundraiser = Fundraiser.load(fundraiserId);
+  let contributor = createOrLoadContributor(fundraiserId, params.account);
+  if (contributor.status == 'Pending') {
+    fundraiser.amountPending = fundraiser.amountPending.minus(params.amount);
+  } else if (contributor.status == 'Qualified') {
+    fundraiser.amountQualified = fundraiser.amountQualified.minus(params.amount);
+  }
+  contributor.amount = contributor.amount.minus(params.amount);
+  fundraiser.amountRefunded = fundraiser.amountRefunded.plus(params.amount);
+  contributor.save();
+  fundraiser.save();
 }
 
 export function handleContributorAccepted(event: ContributorAccepted): void {
@@ -113,6 +137,7 @@ export function handleContributorAccepted(event: ContributorAccepted): void {
 
   let fundraiser = Fundraiser.load(fundraiserId);
   fundraiser.numContributors++;
+  log.debug('Added contributor', [contributor.address.toHex()]);
   fundraiser.save();
 }
 
@@ -122,18 +147,12 @@ export function handleContributorRemoved(event: ContributorRemoved): void {
 
   let contributor = Contributor.load(address.toHex() + '_' + params.account.toHex());
   if (contributor) {
-
-    let fundraiser = Fundraiser.load(address.toHex());
-    if (contributor.status == 'Pending') {
-      fundraiser.amountPending = fundraiser.amountPending.minus(contributor.amount);
-    } else if (contributor.status == 'Qualified') {
-      fundraiser.amountQualified = fundraiser.amountQualified.minus(contributor.amount);
+    if (contributor.status === 'Qualified') {
+      let fundraiser = Fundraiser.load(address.toHex());
+      fundraiser.numContributors--;
+      log.debug('Removed contributor', [contributor.address.toHex()]);
+      fundraiser.save();
     }
-    fundraiser.amountRefunded = fundraiser.amountRefunded.plus(contributor.amount);
-    fundraiser.numContributors++;
-    fundraiser.save();
-
-    fundraiser.save();
 
     contributor.status = params.forced ? 'Removed' : 'Refunded';
 
@@ -147,5 +166,35 @@ export function handleContributorRemoved(event: ContributorRemoved): void {
     contributor.amount = BigInt.fromI32(0);
     contributor.save();
 
+  }
+}
+
+export function handleTokensClaimed(event: TokensClaimed): void {
+  let params = event.params;
+  let fundraiserId = event.address.toHex();
+  let contributorId = fundraiserId + '_' + params.account.toHex();
+  let contributor = Contributor.load(contributorId);
+  contributor.amountClaimed = params.amount;
+  contributor.save();
+}
+
+export function handleReferralChanged(event: ReferralChanged): void {
+  let fundraiser = Fundraiser.load(event.address.toHex());
+  let affiliateId = fundraiser.affiliateManager + '_' + event.params.account.toHex();
+  let affiliate = Affiliate.load(affiliateId);
+  if (affiliate) {
+    affiliate.amount = event.params.amount;
+    affiliate.save();
+  }
+}
+
+export function handleReferralClaimed(event: ReferralClaimed): void {
+  let fundraiser = Fundraiser.load(event.address.toHex());
+  let affiliateId = fundraiser.affiliateManager + '_' + event.params.account.toHex();
+  let affiliate = Affiliate.load(affiliateId);
+  if (affiliate) {
+    affiliate.amountClaimed = affiliate.amount;
+    affiliate.amount = BigInt.fromI32(0);
+    affiliate.save();
   }
 }

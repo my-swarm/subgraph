@@ -1,4 +1,4 @@
-import { store } from "@graphprotocol/graph-ts"
+import { store, BigInt } from "@graphprotocol/graph-ts"
 import { AffiliateManager, Affiliate } from '../../generated/schema';
 import { AffiliateAddedOrUpdated, AffiliateRemoved } from "../../generated/templates/AffiliateManager/AffiliateManager";
 
@@ -16,6 +16,8 @@ export function affiliateAddedOrUpdated(event: AffiliateAddedOrUpdated): void {
   affiliate.percentage = params.percentage;
   affiliate.affiliateManager = affiliateManagerId;
   affiliate.fundraiser = affiliateManager.fundraiser;
+  affiliate.amount = BigInt.fromI32(0);
+  affiliate.amountClaimed = BigInt.fromI32(0);
   affiliate.save();
 }
 

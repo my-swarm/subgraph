@@ -189,12 +189,20 @@ templates:
           handler: handleContributionPending
         - event: ContributionAdded(indexed address,uint256)
           handler: handleContributionAdded
+        - event: ContributionRefunded(indexed address,uint256)
+          handler: handleContributionRefunded
         - event: PendingContributionAccepted(indexed address,uint256)
           handler: handlePendingContributionAccepted
         - event: ContributorAccepted(address)
           handler: handleContributorAccepted
         - event: ContributorRemoved(address,bool)
           handler: handleContributorRemoved
+        - event: TokensClaimed(indexed address,uint256)
+          handler: handleTokensClaimed
+        - event: ReferralChanged(indexed address,uint256)
+          handler: handleReferralChanged
+        - event: ReferralClaimed(indexed address,uint256)
+          handler: handleReferralClaimed
 
   - name: AffiliateManager
     network: {{network}}

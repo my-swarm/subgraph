@@ -7,7 +7,6 @@ query {
     label
     startDate
     endDate
-    createdAt
     softCap
     hardCap
     supply
@@ -37,9 +36,7 @@ query {
       address
       amount
       contributions {
-        id
         type
-        timestamp
         amount
       }
     }

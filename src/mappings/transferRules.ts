@@ -8,7 +8,14 @@ import {
   TransferApproved,
   TransferDenied,
 } from '../../generated/templates/TransferRules/TransferRules';
-import {TransferRules, WhitelistedAccount, GreylistedAccount, TransferRequest, Transfer} from '../../generated/schema';
+import {
+  TransferRules,
+  WhitelistedAccount,
+  GreylistedAccount,
+  TransferRequest,
+  Transfer,
+  TokenHolder
+} from '../../generated/schema';
 
 export function handleWhitelisted(event: AccountWhitelisted): void {
   let params = event.params;
@@ -74,6 +81,13 @@ export function handleTransferRequested(event: TransferRequested): void {
   transferRequest.updatedAt = event.block.timestamp.toI32();
   transferRequest.status = 'Pending';
   transferRequest.save();
+
+  // note: the amount subtracted here is
+  // either added to recipient implicitly by processing the Transfer event
+  // or added back to sender in TransferDenied
+  let holderFrom = TokenHolder.load(transferRequest.from);
+  holderFrom.balance = holderFrom.balance.minus(params.value);
+  holderFrom.save();
 }
 
 export function handleTransferApproved(event: TransferApproved): void {
@@ -107,6 +121,10 @@ export function handleTransferDenied(event: TransferDenied): void {
   transferRequest.updatedAt = event.block.timestamp.toI32();
   transferRequest.status = 'Denied';
   transferRequest.save();
+
+  let holderFrom = TokenHolder.load(transferRequest.from);
+  holderFrom.balance = holderFrom.balance.plus(params.value);
+  holderFrom.save();
 }
 
 
