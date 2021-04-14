@@ -733,6 +733,11 @@
         "internalType": "string",
         "name": "_kyaUri",
         "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_nav",
+        "type": "uint256"
       }
     ],
     "name": "updateKya",
