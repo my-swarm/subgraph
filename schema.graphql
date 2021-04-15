@@ -173,11 +173,9 @@ type Fundraiser @entity {
   amountRefunded: BigInt!
   amountWithdrawn: BigInt!
   status: FundraiserStatus!
-  numContributors: Int!
   contributors: [Contributor!] @derivedFrom(field: "fundraiser")
   affiliates: [Affiliate!] @derivedFrom(field: "fundraiser")
   search: String
-#  contributions: [Contribution!] @derivedFrom(field: "fundraiser")
 }
 
 type AffiliateManager @entity {

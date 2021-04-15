@@ -48,7 +48,7 @@
               "type": "Qualified"
             },
             {
-              "amount": "500000000",
+              "amount": "0",
               "type": "Refunded"
             },
             {
@@ -65,11 +65,11 @@
           "contributions": [
             {
               "amount": "200000000",
-              "type": "Qualified"
+              "type": "Pending"
             },
             {
               "amount": "200000000",
-              "type": "Pending"
+              "type": "Qualified"
             }
           ],
           "id": "0x2fc631e4b3018258759c52af169200213e84abab_0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
@@ -96,7 +96,7 @@
               "type": "Pending"
             },
             {
-              "amount": "400000000",
+              "amount": "0",
               "type": "Removed"
             }
           ],
@@ -165,11 +165,11 @@
           "contributions": [
             {
               "amount": "100000000",
-              "type": "Qualified"
+              "type": "Pending"
             },
             {
               "amount": "100000000",
-              "type": "Pending"
+              "type": "Qualified"
             }
           ],
           "id": "0x2fc631e4b3018258759c52af169200213e84abab_0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
@@ -180,8 +180,8 @@
           "amount": "0",
           "contributions": [
             {
-              "amount": "500000000",
-              "type": "Pending"
+              "amount": "0",
+              "type": "Removed"
             },
             {
               "amount": "500000000",
@@ -189,7 +189,7 @@
             },
             {
               "amount": "500000000",
-              "type": "Removed"
+              "type": "Pending"
             }
           ],
           "id": "0x2fc631e4b3018258759c52af169200213e84abab_0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
@@ -200,7 +200,7 @@
           "amount": "0",
           "contributions": [
             {
-              "amount": "500000000",
+              "amount": "0",
               "type": "Removed"
             },
             {
@@ -240,11 +240,11 @@
           "amount": "700000000",
           "contributions": [
             {
-              "amount": "300000000",
+              "amount": "400000000",
               "type": "Qualified"
             },
             {
-              "amount": "400000000",
+              "amount": "300000000",
               "type": "Qualified"
             }
           ],
@@ -280,17 +280,16 @@
           "status": "Pending"
         }
       ],
-      "endDate": 1642321036,
+      "endDate": 1644935094,
       "fundraiserManager": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
       "hardCap": "10000000000",
       "id": "0x2fc631e4b3018258759c52af169200213e84abab",
       "label": "Testing Fundraiser",
       "minter": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
-      "numContributors": 17,
       "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
       "search": "Testing Fundraiser Testing Token: Fundraising TT4 0x2fc631e4b3018258759c52af169200213e84abab 0xafe1b5bdebd4ae65af2024738bf0735fbb65d44b",
       "softCap": "5000000000",
-      "startDate": 1615882704,
+      "startDate": 1618493161,
       "status": "Running",
       "supply": "100000000000000000000000",
       "token": {

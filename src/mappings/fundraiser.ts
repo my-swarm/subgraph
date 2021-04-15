@@ -41,11 +41,11 @@ function createOrLoadContributor(fundraiserId: string, address: Address): Contri
   return contributor as Contributor; // cast from Contributor | NULL
 }
 
-function saveContribution(id: string, contributor: Contributor, timestamp: BigInt, amount: BigInt): void {
+function saveContribution(id: string, contributorId: string, status: string, timestamp: BigInt, amount: BigInt): void {
   let contribution = new Contribution(id);
   // contribution.fundraiser = fundraiserId;
-  contribution.contributor = contributor.id;
-  contribution.type = contributor.status;
+  contribution.contributor = contributorId;
+  contribution.type = status;
   contribution.timestamp = timestamp.toI32();
   contribution.amount = amount;
   contribution.save();
@@ -66,7 +66,8 @@ export function handleContributionPending(event: ContributionPending): void {
 
   saveContribution(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString(),
-    contributor,
+    contributor.id,
+    'Pending',
     event.block.timestamp,
     params.amount
   );
@@ -87,7 +88,8 @@ export function handleContributionAdded(event: ContributionAdded): void {
 
   saveContribution(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString(),
-    contributor,
+    contributor.id,
+    'Qualified',
     event.block.timestamp,
     params.amount
   );
@@ -134,11 +136,6 @@ export function handleContributorAccepted(event: ContributorAccepted): void {
   let contributor = createOrLoadContributor(fundraiserId, params.account);
   contributor.status = 'Qualified';
   contributor.save();
-
-  let fundraiser = Fundraiser.load(fundraiserId);
-  fundraiser.numContributors++;
-  log.debug('Added contributor', [contributor.address.toHex()]);
-  fundraiser.save();
 }
 
 export function handleContributorRemoved(event: ContributorRemoved): void {
@@ -147,18 +144,12 @@ export function handleContributorRemoved(event: ContributorRemoved): void {
 
   let contributor = Contributor.load(address.toHex() + '_' + params.account.toHex());
   if (contributor) {
-    if (contributor.status === 'Qualified') {
-      let fundraiser = Fundraiser.load(address.toHex());
-      fundraiser.numContributors--;
-      log.debug('Removed contributor', [contributor.address.toHex()]);
-      fundraiser.save();
-    }
-
     contributor.status = params.forced ? 'Removed' : 'Refunded';
 
     saveContribution(
       event.transaction.hash.toHex() + "-" + event.logIndex.toString(),
-      contributor as Contributor,
+      contributor.id,
+      contributor.status,
       event.block.timestamp,
       contributor.amount
     );

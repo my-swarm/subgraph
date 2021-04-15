@@ -201,7 +201,6 @@ export function handleFundraiserRegistered(event: FundraiserRegistered): void {
   fundraiser.amountRefunded = BigInt.fromI32(0);
   fundraiser.amountWithdrawn = BigInt.fromI32(0);
   fundraiser.status = 'Running';
-  fundraiser.numContributors = 0;
   let token = Token.load(fundraiser.token);
   fundraiser.search = fundraiser.label + ' ' + token.name + ' ' + token.symbol + ' ' + fundraiser.id + ' ' + token.id;
   fundraiser.save();

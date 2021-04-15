@@ -29,7 +29,6 @@ query {
     amountRefunded
     amountWithdrawn
     status
-    numContributors
     contributors {
       id
       status

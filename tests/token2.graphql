@@ -46,7 +46,6 @@ query {
       status
     }
     transfers {
-      id
       from {
         address
       }
