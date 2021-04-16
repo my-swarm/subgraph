@@ -1,4 +1,4 @@
-import { store, log } from "@graphprotocol/graph-ts"
+import { store, log } from "@graphprotocol/graph-ts";
 import {
   Token,
   Minter,
@@ -8,28 +8,31 @@ import {
   Fundraiser,
   AffiliateManager,
   Erc20Token
-} from '../../generated/schema';
+} from "../../generated/schema";
 import {
   SRC20Registered,
   Deployed,
   TreasuryUpdated,
   RewardPoolUpdated,
   MinterAdded,
-  MinterRemoved, SRC20Unregistered, FundraiserRegistered,
-} from '../../generated/Registry/SRC20Registry';
+  MinterRemoved,
+  SRC20Unregistered,
+  FundraiserRegistered
+} from "../../generated/Registry/SRC20Registry";
+import { SRC20 as TokenContract } from "../../generated/Registry/SRC20";
+import { Features as FeaturesContract } from "../../generated/Registry/Features";
+import { Fundraiser as FundraiserContract } from "../../generated/Registry/Fundraiser";
+import { ERC20 as ERC20Contract } from "../../generated/Registry/ERC20";
 
-import { SRC20 as TokenContract } from '../../generated/templates/Token/SRC20';
-import {Address, BigInt} from "@graphprotocol/graph-ts/index";
+import { Address, BigInt } from "@graphprotocol/graph-ts/index";
 import {
   Features as FeaturesTemplate,
   Token as TokenTemplate,
   Minter as MinterTemplate,
   Fundraiser as FundraiserTemplate,
-  TransferRules as TransferRulesTemplate, AffiliateManager as AffiliateManagerTemplate
+  TransferRules as TransferRulesTemplate,
+  AffiliateManager as AffiliateManagerTemplate
 } from "../../generated/templates";
-import {Features as FeaturesContract} from "../../generated/templates/Features/Features";
-import {Fundraiser as FundraiserContract, FundraiserCreated} from "../../generated/templates/Fundraiser/Fundraiser";
-import {ERC20 as ERC20Contract} from "../../generated/templates/Fundraiser/ERC20";
 
 export function handleDeployed(event: Deployed): void {
   let registry = new Registry(event.address.toHex());
@@ -60,7 +63,7 @@ export function handleRewardPoolUpdated(event: RewardPoolUpdated): void {
 export function handleMinterAdded(event: MinterAdded): void {
   let registryId = event.address.toHex();
   let address = event.params.minter;
-  let minter = new Minter(address.toHex())
+  let minter = new Minter(address.toHex());
   minter.address = address;
   minter.createdAt = event.block.timestamp;
   minter.registry = registryId;
@@ -73,7 +76,7 @@ export function handleMinterAdded(event: MinterAdded): void {
 }
 
 export function handleMinterRemoved(event: MinterRemoved): void {
-  store.remove('Minter', event.params.minter.toHex())
+  store.remove("Minter", event.params.minter.toHex());
 }
 
 export function handleSRC20Registered(event: SRC20Registered): void {
@@ -84,7 +87,7 @@ export function handleSRC20Registered(event: SRC20Registered): void {
 
   token.owner = tokenContract.owner();
   token.address = params.token;
-  token.name = tokenContract.name()
+  token.name = tokenContract.name();
   token.symbol = tokenContract.symbol();
   token.decimals = tokenContract.decimals();
   token.supply = BigInt.fromI32(0);
@@ -132,9 +135,8 @@ export function handleSRC20Registered(event: SRC20Registered): void {
 }
 
 export function handleSRC20Unregistered(event: SRC20Unregistered): void {
-  store.remove('Token', event.params.token.toHex());
+  store.remove("Token", event.params.token.toHex());
 }
-
 
 export function handleFundraiserRegistered(event: FundraiserRegistered): void {
   let params = event.params;
@@ -146,8 +148,8 @@ export function handleFundraiserRegistered(event: FundraiserRegistered): void {
 
   let affiliateManagerAddress = contract.affiliateManager();
   let affiliateManagerId = affiliateManagerAddress.toHex();
-  if (affiliateManagerId != '0x0000000000000000000000000000000000000000') {
-    AffiliateManagerTemplate.create(affiliateManagerAddress as Address)
+  if (affiliateManagerId != "0x0000000000000000000000000000000000000000") {
+    AffiliateManagerTemplate.create(affiliateManagerAddress as Address);
     let affiliateManager = new AffiliateManager(affiliateManagerId);
     affiliateManager.address = affiliateManagerAddress;
     affiliateManager.fundraiser = fundraiserId;
@@ -172,15 +174,15 @@ export function handleFundraiserRegistered(event: FundraiserRegistered): void {
   let baseCurrencyId = baseCurrencyAddress.toHex();
   let baseCurrency = Erc20Token.load(baseCurrencyId);
   if (!baseCurrency) {
-    let baseCurrency = new Erc20Token(baseCurrencyId)
+    let baseCurrency = new Erc20Token(baseCurrencyId);
     let erc20 = ERC20Contract.bind(baseCurrencyAddress);
-    let wrongBaseCurrency = erc20.try_name().reverted || erc20.try_symbol().reverted && erc20.try_decimals().reverted;
+    let wrongBaseCurrency = erc20.try_name().reverted || (erc20.try_symbol().reverted && erc20.try_decimals().reverted);
     if (wrongBaseCurrency) {
       // todo: this is not the best solution, should figure out something more generic
       return;
       // someone passed an incorrect base currency.
     }
-    baseCurrency.address = baseCurrencyAddress
+    baseCurrency.address = baseCurrencyAddress;
     baseCurrency.name = erc20.name();
     baseCurrency.symbol = erc20.symbol();
     baseCurrency.decimals = erc20.decimals();
@@ -200,13 +202,12 @@ export function handleFundraiserRegistered(event: FundraiserRegistered): void {
   fundraiser.amountPending = BigInt.fromI32(0);
   fundraiser.amountRefunded = BigInt.fromI32(0);
   fundraiser.amountWithdrawn = BigInt.fromI32(0);
-  fundraiser.status = 'Running';
+  fundraiser.status = "Running";
   let token = Token.load(fundraiser.token);
-  fundraiser.search = fundraiser.label + ' ' + token.name + ' ' + token.symbol + ' ' + fundraiser.id + ' ' + token.id;
+  fundraiser.search = fundraiser.label + " " + token.name + " " + token.symbol + " " + fundraiser.id + " " + token.id;
   fundraiser.save();
   token.currentFundraiser = fundraiserId;
   token.save();
 
   FundraiserTemplate.create(fundraiserAddress as Address);
-
 }
