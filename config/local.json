@@ -1,6 +1,6 @@
 {
   "network": "mainnet",
-  "registryAddress": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
-  "usdc": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+  "registryAddress": "0x668C1E66cBB8e994579E5E5CE02F1EF7d5717415",
+  "usdc": "0xB27855a5094b6E3d45cc9023Ce498c8f20B7E467",
   "startBlock": 0
 }

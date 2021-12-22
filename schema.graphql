@@ -96,6 +96,8 @@ type Features @entity {
   accountFreeze: Boolean!
   accountBurn: Boolean!
   transferRules: Boolean!
+  autoburn: Boolean!
+  autoburnTs: Int
 }
 
 enum TransferRequestStatus {

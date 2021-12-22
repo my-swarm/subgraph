@@ -118,6 +118,7 @@ export function handleSRC20Registered(event: SRC20Registered): void {
   features.accountBurn = (featuresBitmap & 0x04) !== 0;
   features.accountFreeze = (featuresBitmap & 0x08) !== 0;
   features.transferRules = (featuresBitmap & 0x10) !== 0;
+  features.autoburn = (featuresBitmap & 0x20) !== 0;
   features.token = tokenId;
 
   token.transferRules = transferRulesId;

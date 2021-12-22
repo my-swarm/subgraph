@@ -7,6 +7,7 @@ import {
   Unpaused,
 } from '../../generated/templates/Features/Features';
 import { Token, TokenHolder, Features } from '../../generated/schema';
+import {AutoburnTsSet} from "../../generated/Registry/Features";
 
 export function handleFeaturesUpdated(event: FeaturesUpdated): void {
   let params = event.params;
@@ -17,6 +18,7 @@ export function handleFeaturesUpdated(event: FeaturesUpdated): void {
   features.accountFreeze = params.accountFreeze;
   features.accountBurn = params.accountBurn;
   features.transferRules = params.transferRules;
+  features.autoburn = params.autoburn;
 
   features.save();
 }
@@ -49,6 +51,13 @@ export function handleTokenUnfrozen(event: Unpaused): void {
   token.isFrozen = false;
   token.isFrozenBy = null;
   token.save();
+}
+
+export function handleAutoburnTsSet(event: AutoburnTsSet): void {
+  let params = event.params;
+  let features = Features.load(event.address.toHex());
+  features.autoburnTs = params.ts.toI32();
+  features.save();
 }
 
 

@@ -153,7 +153,7 @@ templates:
         - Token
         - TokenHolder
       eventHandlers:
-        - event: FeaturesUpdated(bool,bool,bool,bool,bool)
+        - event: FeaturesUpdated(bool,bool,bool,bool,bool,bool)
           handler: handleFeaturesUpdated
         - event: AccountFrozen(indexed address)
           handler: handleAccountFrozen
@@ -163,6 +163,8 @@ templates:
           handler: handleTokenFrozen
         - event: Unpaused(address)
           handler: handleTokenUnfrozen
+        - event: AutoburnTsSet(uint256)
+          handler: handleAutoburnTsSet
 
 
   - name: Fundraiser

@@ -32,6 +32,11 @@
         "type": "uint8"
       },
       {
+        "internalType": "bytes",
+        "name": "_options",
+        "type": "bytes"
+      },
+      {
         "internalType": "address",
         "name": "_registry",
         "type": "address"
