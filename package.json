@@ -8,13 +8,11 @@
     "dev": "yarn create:local ; yarn deploy:local",
     "test": "(cd tests && ts-node run.ts)",
     "create:local": "graph create --node http://localhost:8120/ my-swarm/issuance",
-    "create:kovan": "graph create --node http://localhost:8220/ my-swarm/issuance",
-    "create:mainnet": "graph create --node http://localhost:8320/ my-swarm/issuance",
     "deploy:local": "NETWORK=local yarn prepare; graph deploy --node http://localhost:8120/ --ipfs http://localhost:5101 my-swarm/issuance",
-    "deploy:kovan": "NETWORK=kovan yarn prepare; graph deploy --node http://localhost:8220/ --ipfs http://localhost:5201 my-swarm/issuance",
-    "deploy:mainnet": "NETWORK=mainnet yarn prepare; graph deploy --node http://localhost:8320/ --ipfs http://localhost:5301 my-swarm/issuance",
-    "deploy:thegraph:kovan": "NETWORK=kovan yarn prepare; ./deploy.sh kovan",
-    "deploy:thegraph:mainnet": "NETWORK=mainnet yarn prepare; ./deploy.sh mainnet"
+    "deploy:kovan": "NETWORK=kovan yarn prepare; ./deploy.sh kovan",
+    "deploy:mainnet": "NETWORK=mainnet yarn prepare; ./deploy.sh mainnet",
+    "deploy:mumbai": "NETWORK=mumbai yarn prepare; ./deploy.sh mumbai",
+    "deploy:polygon": "NETWORK=mainnet yarn prepare; ./deploy.sh polygon"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",
