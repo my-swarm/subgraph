@@ -15,11 +15,11 @@ export function handleTransfer(event: TransferEvent): void {
   let token = Token.load(address.toHex());
   let transferRules = token.transferRules;
 
-  if (transferRules != '0x0000000000000000000000000000000000000000' && fromAddress.toHex() == transferRules || toAddress.toHex() == transferRules) {
+  if (transferRules != '0x0000000000000000000000000000000000000000' && (fromAddress.toHex() == transferRules || toAddress.toHex() == transferRules)) {
     // we don't count temporary transfers transferRules contract (create on transfer request)
     return;
   }
-  
+
   if (holderFrom) {
     holderFrom.balance = holderFrom.balance.minus(params.value);
     holderFrom.save();

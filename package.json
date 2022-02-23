@@ -12,7 +12,7 @@
     "deploy:kovan": "NETWORK=kovan yarn prepare; ./deploy.sh kovan",
     "deploy:mainnet": "NETWORK=mainnet yarn prepare; ./deploy.sh mainnet",
     "deploy:mumbai": "NETWORK=mumbai yarn prepare; ./deploy.sh mumbai",
-    "deploy:polygon": "NETWORK=mainnet yarn prepare; ./deploy.sh polygon"
+    "deploy:polygon": "NETWORK=polygon yarn prepare; ./deploy.sh polygon"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",

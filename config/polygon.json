@@ -1,5 +1,5 @@
 {
-  "network": "polygon",
-  "registryAddress": "0x0000000000000000000000000000000000000000",
-  "startBlock": 1
+  "network": "matic",
+  "registryAddress": "0x4e5370B262e83EAd732fb184205510B78eC0fbda",
+  "startBlock": 23917300
 }
