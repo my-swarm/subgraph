@@ -21,6 +21,7 @@ type Minter @entity {
 
 type Token @entity {
   id: ID!
+  deployedAt: Int!
   owner: Bytes!
   address: Bytes!
   name: String!

@@ -85,6 +85,7 @@ export function handleSRC20Registered(event: SRC20Registered): void {
   let token = new Token(tokenId);
   let tokenContract = TokenContract.bind(params.token);
 
+  token.deployedAt = event.block.timestamp.toI32();
   token.owner = tokenContract.owner();
   token.address = params.token;
   token.name = tokenContract.name();
