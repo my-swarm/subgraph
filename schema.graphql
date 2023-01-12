@@ -31,8 +31,8 @@ type Token @entity {
   maxSupply: BigInt! # maximum that can be minted
   availableSupply: BigInt! # ~ token owner balance
   fee: BigInt!
-  nav: Int
-  navFeePaid: Int
+  nav: BigInt
+  navFeePaid: BigInt
   kyaUri: String
 
   isFrozen: Boolean!

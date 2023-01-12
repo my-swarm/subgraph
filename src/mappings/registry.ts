@@ -95,7 +95,7 @@ export function handleSRC20Registered(event: SRC20Registered): void {
   token.maxSupply = tokenContract.maxTotalSupply();
   token.availableSupply = BigInt.fromI32(0);
   token.fee = BigInt.fromI32(0);
-  token.nav = tokenContract.nav().toI32();
+  token.nav = tokenContract.nav();
   token.kyaUri = tokenContract.kyaUri();
 
   token.isFrozen = false;
